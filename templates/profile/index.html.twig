@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My profile{% endblock %}
+
+{% block body %}
+    <div>
+        Hello {{ app.user.userIdentifier }}
+    </div>
+
+    {% set minutesLastEmailSent = app.user.verificationEmailSentAt.diff(date()).i %}
+
+    {% if not app.user.verified and minutesLastEmailSent > 9 %}
+        <div>
+            <a href="{{ path('app_profile_send_verification_email') }}">Send verification email</a>
+        </div>
+    {% endif %}
+{% endblock %}

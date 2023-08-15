@@ -37,13 +37,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $avatar = null;
 
     #[ORM\Column]
-    private ?bool $enabled = null;
+    private ?bool $enabled = true;
 
     #[ORM\Column(nullable: true)]
     private ?float $averageDailyRate = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column]
+    private ?bool $verified = false;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $verificationEmailSentAt = null;
 
     public function getId(): ?int
     {
@@ -183,6 +189,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function isVerified(): ?bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getVerificationEmailSentAt(): ?\DateTimeImmutable
+    {
+        return $this->verificationEmailSentAt;
+    }
+
+    public function setVerificationEmailSentAt(?\DateTimeImmutable $verificationEmailSentAt): static
+    {
+        $this->verificationEmailSentAt = $verificationEmailSentAt;
 
         return $this;
     }

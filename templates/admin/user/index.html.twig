@@ -13,4 +13,17 @@
         {% endfor %}
 
     </ul>
+    <hr>
+    <div id="presidents">Loading...</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+    <script src="{{ asset('bundles/datatables/js/datatables.js') }}"></script>
+    <script>
+        $(function() {
+            $('#presidents').initDataTables({{ datatable_settings(datatable) }});
+        });
+    </script>
 {% endblock %}

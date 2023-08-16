@@ -6,6 +6,12 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Omines\DataTablesBundle\Adapter\ArrayAdapter;
+use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
+use Omines\DataTablesBundle\Column\BoolColumn;
+use Omines\DataTablesBundle\Column\DateTimeColumn;
+use Omines\DataTablesBundle\Column\TextColumn;
+use Omines\DataTablesBundle\DataTableFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,12 +22,33 @@ class UserController extends AbstractController
 {
 
     #[Route('/', name: 'app_admin_user')]
-    public function index(UserRepository $userRepository): Response
+    public function index(Request $request, UserRepository $userRepository, DataTableFactory $dataTableFactory): Response
     {
+        //todo: mettre ça ailleur https://omines.github.io/datatables-bundle/#datatable-types
+        //todo: bouger le js aussi
+        $table = $dataTableFactory->create()
+            ->add('firstName', TextColumn::class)
+            ->add('lastName', TextColumn::class)
+            ->add('email', TextColumn::class)
+            ->add('verified', BoolColumn::class, [
+                'trueValue' => 'yes',
+                'falseValue' => 'no',
+            ])
+            ->add('createdAt', DateTimeColumn::class, ['format' => 'd/m/Y'])
+            ->createAdapter(ORMAdapter::class, [
+                'entity' => User::class,
+            ])
+            ->handleRequest($request);
+
+        if ($table->isCallback()) {
+            return $table->getResponse();
+        }
+
         $users = $userRepository->findAll();
 
         return $this->render('admin/user/index.html.twig', [
-            'users' => $users,
+            'users'     => $users,
+            'datatable' => $table,
         ]);
     }
 

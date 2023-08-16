@@ -11,4 +11,5 @@ import './styles/app.scss';
 import { Tooltip, Toast, Popover } from 'bootstrap';
 const $ = require('jquery');
 global.$ = global.jQuery = $;
+
 require('bootstrap');

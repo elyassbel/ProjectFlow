@@ -1,0 +1,6 @@
+<script src="{{ asset('bundles/datatables/js/datatables.js') }}"></script>
+<script>
+    $(function() {
+        $('#data-table-instance').initDataTables({{ datatable_settings(datatable) }});
+    });
+</script>

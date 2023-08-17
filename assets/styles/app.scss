@@ -1,6 +1,9 @@
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
 
+// Customs
+@import "datatables";
+
 body {
     background-color: lightgray;
 }

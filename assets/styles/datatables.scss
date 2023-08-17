@@ -1,0 +1,12 @@
+// PAGINATION
+.dataTables_wrapper .dataTables_paginate a.paginate_button {
+  border-radius: 5px !important;
+  margin: 0 3px !important;
+  border: none !important;
+
+  &.current {
+    z-index: 3;
+    color: #fff!important;
+    background: $dark;
+  }
+}

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\DataTable\UserTableType;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
@@ -23,41 +24,14 @@ class UserController extends AbstractController
 {
 
     #[Route('/', name: 'app_admin_user')]
-    public function index(Request $request, UserRepository $userRepository, DataTableFactory $dataTableFactory): Response
+    public function index(Request $request, DataTableFactory $dataTableFactory): Response
     {
-        //todo: Mettre ça ailleur https://omines.github.io/datatables-bundle/#datatable-types
-        //todo: Bouger le js aussi
-        $table = $dataTableFactory->create()
-            ->add('firstName', TextColumn::class)
-            ->add('lastName', TextColumn::class)
-            ->add('email', TextColumn::class)
-            ->add('verified', BoolColumn::class, [
-                'trueValue' => 'yes',
-                'falseValue' => 'no',
-                'globalSearchable' => false
-            ])
-            ->add('enabled', BoolColumn::class, [
-                'trueValue' => 'yes',
-                'falseValue' => 'no',
-                'globalSearchable' => false
-            ])
-            ->add('createdAt', DateTimeColumn::class, [
-                'format' => 'd/m/Y',
-                'globalSearchable' => false
-            ])
-            ->createAdapter(ORMAdapter::class, [
-                'entity' => User::class,
-            ])
-            ->handleRequest($request);
-
+        $table = $dataTableFactory->createFromType(UserTableType::class)->handleRequest($request);
         if ($table->isCallback()) {
             return $table->getResponse();
         }
 
-        $users = $userRepository->findAll();
-
         return $this->render('admin/user/index.html.twig', [
-            'users'     => $users,
             'datatable' => $table,
         ]);
     }

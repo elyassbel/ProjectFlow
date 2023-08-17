@@ -4,7 +4,7 @@ datatables:
     options:
 #        lengthMenu : [10, 25, 50, 100, 250, 500, 1000, 2500]
         lengthChange : false
-        pageLength: 1
+        pageLength: 10
         searching: true
         pagingType: 'simple_numbers'
         dom: "<'row' <'col-sm-12 text-right mb-2' f>><'row' <'col-sm-12' tr>><'row' <'col-sm-6'li><'col-sm-6 text-right' p>>" #f = search bar, tr = table, l = length change, i = "showing x to x entries", p = paging

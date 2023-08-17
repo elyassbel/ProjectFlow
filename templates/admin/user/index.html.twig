@@ -2,6 +2,22 @@
 
 {% block title %}Hello UserController!{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            border-radius: 5px!important;
+            margin: 0 3px!important;
+            border: none!important;
+        }
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            z-index: 3;
+            color: #fff!important;
+            background: #212529;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
     <h1>Users list</h1>
     <div>
@@ -14,7 +30,7 @@
 
     </ul>
     <hr>
-    <div id="presidents">Loading...</div>
+    <div id="data-table-instance">Loading...</div>
 {% endblock %}
 
 {% block javascripts %}
@@ -23,7 +39,7 @@
     <script src="{{ asset('bundles/datatables/js/datatables.js') }}"></script>
     <script>
         $(function() {
-            $('#presidents').initDataTables({{ datatable_settings(datatable) }});
+            $('#data-table-instance').initDataTables({{ datatable_settings(datatable) }});
         });
     </script>
 {% endblock %}

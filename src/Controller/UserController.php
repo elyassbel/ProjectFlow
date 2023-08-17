@@ -15,6 +15,7 @@ use Omines\DataTablesBundle\DataTableFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/user')]
@@ -24,8 +25,8 @@ class UserController extends AbstractController
     #[Route('/', name: 'app_admin_user')]
     public function index(Request $request, UserRepository $userRepository, DataTableFactory $dataTableFactory): Response
     {
-        //todo: mettre ça ailleur https://omines.github.io/datatables-bundle/#datatable-types
-        //todo: bouger le js aussi
+        //todo: Mettre ça ailleur https://omines.github.io/datatables-bundle/#datatable-types
+        //todo: Bouger le js aussi
         $table = $dataTableFactory->create()
             ->add('firstName', TextColumn::class)
             ->add('lastName', TextColumn::class)
@@ -33,8 +34,17 @@ class UserController extends AbstractController
             ->add('verified', BoolColumn::class, [
                 'trueValue' => 'yes',
                 'falseValue' => 'no',
+                'globalSearchable' => false
             ])
-            ->add('createdAt', DateTimeColumn::class, ['format' => 'd/m/Y'])
+            ->add('enabled', BoolColumn::class, [
+                'trueValue' => 'yes',
+                'falseValue' => 'no',
+                'globalSearchable' => false
+            ])
+            ->add('createdAt', DateTimeColumn::class, [
+                'format' => 'd/m/Y',
+                'globalSearchable' => false
+            ])
             ->createAdapter(ORMAdapter::class, [
                 'entity' => User::class,
             ])
@@ -53,13 +63,17 @@ class UserController extends AbstractController
     }
 
     #[Route('/new', name: 'app_admin_user_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $hasher): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $pwd = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'), 0, 6);
+            $user
+                ->setPassword($hasher->hashPassword($user, $pwd))
+                ->setCreatedAt(new \DateTimeImmutable());
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -68,7 +82,7 @@ class UserController extends AbstractController
 
         return $this->render('admin/user/new.html.twig', [
             'user' => $user,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -94,7 +108,7 @@ class UserController extends AbstractController
 
         return $this->render('admin/user/edit.html.twig', [
             'user' => $user,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 

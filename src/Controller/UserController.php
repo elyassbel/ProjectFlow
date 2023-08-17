@@ -5,13 +5,8 @@ namespace App\Controller;
 use App\DataTable\UserTableType;
 use App\Entity\User;
 use App\Form\UserType;
-use App\Repository\UserRepository;
+use App\Service\UserService;
 use Doctrine\ORM\EntityManagerInterface;
-use Omines\DataTablesBundle\Adapter\ArrayAdapter;
-use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
-use Omines\DataTablesBundle\Column\BoolColumn;
-use Omines\DataTablesBundle\Column\DateTimeColumn;
-use Omines\DataTablesBundle\Column\TextColumn;
 use Omines\DataTablesBundle\DataTableFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,16 +32,15 @@ class UserController extends AbstractController
     }
 
     #[Route('/new', name: 'app_admin_user_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $hasher): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, UserService $userService): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $pwd = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'), 0, 6);
             $user
-                ->setPassword($hasher->hashPassword($user, $pwd))
+                ->setPassword($userService->generatePassword($user))
                 ->setCreatedAt(new \DateTimeImmutable());
             $entityManager->persist($user);
             $entityManager->flush();

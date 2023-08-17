@@ -2,8 +2,14 @@
 
 namespace App\DataTable;
 
+use Twig\Environment;
+
 class TableDefault
 {
+    public function __construct(private readonly Environment $twig)
+    {
+    }
+
     protected function getYesNoOptions($searchable = false): array
     {
         return [
@@ -20,5 +26,17 @@ class TableDefault
             'format' => 'd/m/Y',
             'globalSearchable' => $searchable,
         ];
+    }
+
+    protected function getActionsButtons($context, string $editPath = null, string $showPath = null, string $deletePath = null): string
+    {
+        return $this->twig->render('_common/_datatables_actions.html.twig', [
+            'row' => $context,
+            'path' => [
+                'edit' => $editPath,
+                'show' => $showPath,
+                'delete' => $deletePath,
+            ]
+        ]);
     }
 }

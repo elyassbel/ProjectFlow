@@ -15,5 +15,5 @@ global.$ = global.jQuery = $;
 import 'bootstrap';
 
 import 'datatables.net';
-// require('datatables.net-bs5');
+// import 'datatables.net-bs5';
 

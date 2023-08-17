@@ -1,0 +1,14 @@
+{%- if path.edit is defined -%}
+    <a href="{{ path(path.edit, {id: row.id}) }}">{{ 'btn.edit'|trans }}</a> <br>
+{%- endif -%}
+
+{%- if path.show is defined -%}
+    <a href="{{ path(path.show, {id: row.id}) }}">{{ 'btn.show'|trans }}</a> <br>
+{%- endif -%}
+
+{%- if path.delete is defined -%}
+    <form method="post" action="{{ path(path.delete, {id: row.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ row.id) }}">
+        <button class="btn">{{ 'btn.delete'|trans }}</button>
+    </form>
+{%- endif -%}

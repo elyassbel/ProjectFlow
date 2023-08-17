@@ -1,0 +1,12 @@
+dt:
+  columns:
+    # COMMONS
+    actions: Actions
+
+    # USER
+    firstName: First name
+    lastName: Last name
+    email: Email
+    verified: Verified email
+    enabled: Account enabled
+    createdAt: Created At

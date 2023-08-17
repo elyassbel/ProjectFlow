@@ -1,0 +1,10 @@
+dt:
+  columns:
+    # USER
+    firstName: Prénom
+    lastName: Nom
+    email: Email
+    verified: Email verifié
+    enabled: Compte activé
+    createdAt: Date de création
+    actions: Actions

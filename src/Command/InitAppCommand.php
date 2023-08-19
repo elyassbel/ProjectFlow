@@ -40,7 +40,7 @@ class InitAppCommand extends Command
             ->setEnabled(true)
             ->setFirstName('Elyass')
             ->setLastName('Belahcen')
-            ->setRoles(['ROLE_ADMIN']);
+            ->setRoles(['ROLE_ADMIN', 'ROLE_ALLOWED_TO_SWITCH', 'ROLE_USER']);
 
         $user->setPassword($this->pwdHasher->hashPassword($user, $pwd));
 

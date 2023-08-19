@@ -168,6 +168,11 @@
             {{ include('_common/_sidebar.html.twig') }}
 
             <div class="d-flex flex-column flex-shrink-0 p-3 container">
+                {% if is_granted('IS_IMPERSONATOR') %}
+                    <div class="alert alert-info">
+                        YOU ARE NOW LOGGED AS {{ app.user.userIdentifier }} : <a href="{{ impersonation_exit_path(path('app_dashboard') ) }}">Exit impersonation</a>
+                    </div>
+                {% endif %}
                 {{ include('_common/_flashes.html.twig') }}
                 {% block body %}{% endblock %}
             </div>

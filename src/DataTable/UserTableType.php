@@ -22,8 +22,8 @@ class UserTableType extends TableDefault implements DataTableTypeInterface
             ->add('enabled', BoolColumn::class, $this->getYesNoOptions())
             ->add('createdAt', DateTimeColumn::class, $this->getDateOptions())
             ->add('actions', TextColumn::class, [
-                'render' => function ($value, $context) {
-                    return $this->getActionsButtons($context, 'app_admin_user_edit', 'app_admin_user_show', 'app_admin_user_delete');
+                'render' => function($value, $context) {
+                    return $this->getActionsButtons($context, 'app_admin_user_edit', 'app_admin_user_show', 'app_admin_user_delete', true);
                 },
             ])
             ->createAdapter(ORMAdapter::class, [

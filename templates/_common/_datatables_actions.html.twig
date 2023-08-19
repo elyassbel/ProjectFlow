@@ -6,9 +6,13 @@
     <a href="{{ path(path.show, {id: row.id}) }}">{{ 'btn.show'|trans }}</a> <br>
 {%- endif -%}
 
-{%- if path.delete is defined -%}
+{%- if path.delete is defined and app.user.id != row.id -%}
     <form method="post" action="{{ path(path.delete, {id: row.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ row.id) }}">
         <button class="btn">{{ 'btn.delete'|trans }}</button>
     </form>
+{%- endif -%}
+
+{%- if impersonate == true and app.user.id != row.id and is_granted('ROLE_ALLOWED_TO_SWITCH') -%}
+    <a href="{{ path('app_dashboard', {_switch_user: row.email}) }}">impersonate</a>
 {%- endif -%}

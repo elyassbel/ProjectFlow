@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Settings > {% block subtitle %}{% endblock %}{% endblock %}
+
+{% block body %}
+    <div class="nav-scroller bg-body shadow-sm">
+        <nav class="nav nav-underline" aria-label="Secondary navigation">
+            <a class="nav-link {{ app.current_route == 'app_setting' ? 'active':'' }}" aria-current="true" href="{{ path('app_setting') }}">Mon profil</a>
+            <a class="nav-link {{ app.current_route == 'app_setting_email' ? 'active':'' }}" aria-current="true" href="{{ path('app_setting_email') }}">Email</a>
+            <a class="nav-link {{ app.current_route == 'app_setting_security' ? 'active':'' }}" aria-current="true" href="{{ path('app_setting_security') }}">Sécurité</a>
+            <a class="nav-link {{ app.current_route == 'app_setting_preferences' ? 'active':'' }}" aria-current="true" href="{{ path('app_setting_preferences') }}">Préférences du compte</a>
+        </nav>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+{% endblock %}

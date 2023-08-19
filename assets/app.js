@@ -17,3 +17,5 @@ import 'bootstrap';
 import 'datatables.net';
 // import 'datatables.net-bs5';
 
+require('@fortawesome/fontawesome-free/js/all.js');
+

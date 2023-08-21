@@ -9,7 +9,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: UserProfileRepository::class)]
 #[Vich\Uploadable]
-class UserProfile
+class UserProfile implements \Serializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -182,5 +182,17 @@ class UserProfile
         $this->user = $user;
 
         return $this;
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize([$this->id]);
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list ($this->id) = unserialize($serialized);
     }
 }

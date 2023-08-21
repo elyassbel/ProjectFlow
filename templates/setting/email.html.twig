@@ -5,9 +5,22 @@
 {% block content %}
     <h1 class="card-title">Email</h1>
     <p>
-        Your current email address is <strong>{{ app.user.email }}</strong>
+        Your current email address is <strong>{{ app.user.email }}</strong> <br>
+        This email <strong>{{ app.user.verified ? 'is verified':'is not verified' }}</strong>
     </p>
-    {# todo:form to change email #}
+    {% if app.user.verificationEmailSentAt and not app.user.verified %}
+        {% set minutesLastEmailSent = app.user.verificationEmailSentAt.diff(date()).i %}
+        {% if minutesLastEmailSent > 9 %}
+            <div>
+                <a href="{{ path('app_setting_email_send_verification') }}">Send verification email</a>
+            </div>
+        {% endif %}
+    {% endif %}
+
+    {{ form_start(form) }}
+    {{ form_rest(form) }}
+    <input type="submit">
+    {{ form_end(form) }}
 
     {# todo: email notification settings? #}
 {% endblock %}

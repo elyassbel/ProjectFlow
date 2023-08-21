@@ -2,27 +2,118 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\ProfileEmailType;
+use App\Form\ProfileUserType;
+use App\Repository\UserRepository;
+use App\Security\EmailVerifier;
+use App\Service\UserService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
-#[Route('/settings')]
+#[Route('/app/settings')]
 class SettingController extends AbstractController
 {
     #[Route('/', name: 'app_setting')]
-    public function index(): Response
+    public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
+        $form = $this->createForm(ProfileUserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($user);
+            $entityManager->flush();
+            $this->addFlash('success', 'Profile edited');
+
+            return $this->redirectToRoute('app_setting');
+        }
+
         return $this->render('setting/index.html.twig', [
-            'controller_name' => 'SettingController',
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route('/email', name: 'app_setting_email')]
-    public function email(): Response
+    public function email(Request $request, UserService $userService, EntityManagerInterface $entityManager): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
+        $currentEmail = $user->getEmail();
+        $form = $this->createForm(ProfileEmailType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                if ($currentEmail == $form->getData()->getEmail()) {
+                    $this->addFlash('info', 'This is already your current email address');
+
+                    return $this->redirectToRoute('app_setting_email');
+                }
+                $user = $userService->sendVerificationEmail($user);
+                $entityManager->persist($user);
+                $entityManager->flush();
+                $this->addFlash('success', 'Email changed, check your inbox to verify the new email address');
+
+                return $this->redirectToRoute('app_setting_email');
+            } catch (\Exception $e) {
+                $this->addFlash('danger', $e->getMessage());
+            }
+        }
+
         return $this->render('setting/email.html.twig', [
-            'controller_name' => 'SettingController',
+            'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/email/send-verification', name: 'app_setting_email_send_verification')]
+    public function sendVerificationEmail(UserService $userService, EntityManagerInterface $entityManager): Response
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        try {
+            $user = $userService->sendVerificationEmail($user);
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Verification email sent !');
+        } catch (\Exception $e) {
+            $this->addFlash('error', $e->getMessage());
+        }
+
+        return $this->redirectToRoute('app_setting_email');
+    }
+
+    #[Route('/email/verify', name: 'app_setting_email_verify')]
+    public function verifyUserEmail(Request $request, UserRepository $userRepository, EmailVerifier $emailVerifier): Response
+    {
+        $id = $request->query->get('id');
+        if (null === $id) {
+            return $this->redirectToRoute('app_setting_email');
+        }
+
+        $user = $userRepository->find($id);
+        if (null === $user) {
+            return $this->redirectToRoute('app_setting_email');
+        }
+
+        // validate email confirmation link, sets User::isVerified=true and persists
+        try {
+            $emailVerifier->handleEmailConfirmation($request, $user);
+        } catch (VerifyEmailExceptionInterface $exception) {
+            $this->addFlash('error', $exception->getReason());
+
+            return $this->redirectToRoute('app_setting_email');
+        }
+
+        $this->addFlash('success', 'Your email address has been verified.');
+
+        return $this->redirectToRoute('app_setting_email');
     }
 
     #[Route('/security', name: 'app_setting_security')]

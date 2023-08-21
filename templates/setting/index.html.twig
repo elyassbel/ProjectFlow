@@ -4,7 +4,8 @@
 
 {% block content %}
     <h1 class="card-title">My profile</h1>
-    <p class="card-text">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam aperiam assumenda doloribus eum mollitia nobis provident tempora. Atque, laborum!
-    </p>
+    {{ form_start(form) }}
+    {{ form_rest(form) }}
+    <input type="submit">
+    {{ form_end(form) }}
 {% endblock %}

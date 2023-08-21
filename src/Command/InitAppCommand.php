@@ -36,6 +36,7 @@ class InitAppCommand extends Command
         $user = new User();
         $user->setEmail('admin@projectflow.com')
             ->setCreatedAt(new \DateTimeImmutable())
+            ->setVerificationEmailSentAt(new \DateTimeImmutable())
             ->setVerified(true)
             ->setEnabled(true)
             ->setFirstName('Elyass')

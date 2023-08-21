@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\DataTable\UserTableType;
 use App\Entity\User;
+use App\Entity\UserProfile;
 use App\Form\UserType;
 use App\Service\UserService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -35,13 +36,20 @@ class UserController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager, UserService $userService): Response
     {
         $user = new User();
+        $userProfile = new UserProfile();
+        $userProfile->setCreatedAt(new \DateTimeImmutable());
+        $user->setUserProfile($userProfile);
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user
-                ->setPassword($userService->generatePassword($user))
-                ->setCreatedAt(new \DateTimeImmutable());
+            $user->setPassword($userService->generatePassword($user));
+            $entityManager->persist($user);
+            $entityManager->persist($userProfile);
+            $entityManager->flush();
+
+            $user = $userService->sendVerificationEmail($user);
             $entityManager->persist($user);
             $entityManager->flush();
 

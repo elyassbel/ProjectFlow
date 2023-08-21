@@ -17,15 +17,15 @@
             </tr>
             <tr>
                 <th>LastName</th>
-                <td>{{ user.lastName }}</td>
+                <td>{{ user.userProfile.lastName }}</td>
             </tr>
             <tr>
                 <th>FirstName</th>
-                <td>{{ user.firstName }}</td>
+                <td>{{ user.userProfile.firstName }}</td>
             </tr>
             <tr>
                 <th>Avatar</th>
-                <td>{{ user.avatar }}</td>
+                <td><img src="{{ asset('/images/upload/users/'~user.userProfile.avatarName)|imagine_filter('image120x120') }}" alt="{{ user.userProfile.avatarName }}"/></td>
             </tr>
             <tr>
                 <th>Enabled</th>
@@ -33,11 +33,15 @@
             </tr>
             <tr>
                 <th>AverageDailyRate</th>
-                <td>{{ user.averageDailyRate }}€/d</td>
+                <td>{{ user.userProfile.averageDailyRate }}{{ user.userProfile.currency }}/d</td>
+            </tr>
+            <tr>
+                <th>Locale</th>
+                <td>{{ user.userProfile.locale }}</td>
             </tr>
             <tr>
                 <th>CreatedAt</th>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.userProfile.createdAt ? user.userProfile.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>Verified</th>

@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\ProfileEmailType;
-use App\Form\ProfileUserType;
+use App\Entity\UserProfile;
+use App\Form\SettingEmailType;
+use App\Form\UserProfileType;
 use App\Repository\UserRepository;
 use App\Security\EmailVerifier;
 use App\Service\UserService;
@@ -21,12 +22,14 @@ class SettingController extends AbstractController
     #[Route('/', name: 'app_setting')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
+        /** @var User $user */
         $user = $this->getUser();
-        $form = $this->createForm(ProfileUserType::class, $user);
+        $userProfile = $user->getUserProfile();
+        $form = $this->createForm(UserProfileType::class, $userProfile);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($user);
+            $entityManager->persist($userProfile);
             $entityManager->flush();
             $this->addFlash('success', 'Profile edited');
 
@@ -44,7 +47,7 @@ class SettingController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
         $currentEmail = $user->getEmail();
-        $form = $this->createForm(ProfileEmailType::class, $user);
+        $form = $this->createForm(SettingEmailType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -20,12 +20,18 @@ class TableDefault
     }
 
     //todo: adapt the translation format
-    protected function getDateOptions($searchable = false): array
+    protected function getDateOptions($searchable = false, $field = ''): array
     {
-        return [
+        $options = [
             'format' => 'd/m/Y',
             'globalSearchable' => $searchable,
         ];
+
+        if ($field) {
+            $options['field'] = $field;
+        }
+
+        return $options;
     }
 
     protected function getActionsButtons($context, string $editPath = null, string $showPath = null, string $deletePath = null, bool $impersonate = false): string

@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\Entity\User;
+use App\Entity\UserProfile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -33,14 +34,18 @@ class InitAppCommand extends Command
 
         // CREATE USER
         $pwd = substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'), 0, 6);
+
+        $userProfile = new UserProfile();
+        $userProfile->setCreatedAt(new \DateTimeImmutable())
+            ->setFirstName('Elyass')
+            ->setLastName('Belahcen');
+
         $user = new User();
+        $user->setUserProfile($userProfile);
         $user->setEmail('admin@projectflow.com')
-            ->setCreatedAt(new \DateTimeImmutable())
             ->setVerificationEmailSentAt(new \DateTimeImmutable())
             ->setVerified(true)
             ->setEnabled(true)
-            ->setFirstName('Elyass')
-            ->setLastName('Belahcen')
             ->setRoles(['ROLE_ADMIN', 'ROLE_ALLOWED_TO_SWITCH', 'ROLE_USER']);
 
         $user->setPassword($this->pwdHasher->hashPassword($user, $pwd));

@@ -15,12 +15,16 @@ class UserTableType extends TableDefault implements DataTableTypeInterface
     public function configure(DataTable $dataTable, array $options)
     {
         $dataTable
-            ->add('firstName', TextColumn::class)
-            ->add('lastName', TextColumn::class)
+            ->add('firstName', TextColumn::class, [
+                'field' => 'userProfile.firstName'
+            ])
+            ->add('lastName', TextColumn::class, [
+                'field' => 'userProfile.lastName'
+            ])
             ->add('email', TextColumn::class)
             ->add('verified', BoolColumn::class, $this->getYesNoOptions())
             ->add('enabled', BoolColumn::class, $this->getYesNoOptions())
-            ->add('createdAt', DateTimeColumn::class, $this->getDateOptions())
+            ->add('createdAt', DateTimeColumn::class, $this->getDateOptions(false,'userProfile.createdAt'))
             ->add('actions', TextColumn::class, [
                 'render' => function($value, $context) {
                     return $this->getActionsButtons($context, 'app_admin_user_edit', 'app_admin_user_show', 'app_admin_user_delete', true);

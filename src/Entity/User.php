@@ -27,29 +27,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $lastName = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $firstName = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $avatar = null;
-
     #[ORM\Column]
     private ?bool $enabled = true;
-
-    #[ORM\Column(nullable: true)]
-    private ?float $averageDailyRate = null;
-
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
     private ?bool $verified = false;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $verificationEmailSentAt = null;
+
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?UserProfile $userProfile = null;
 
     public function getId(): ?int
     {
@@ -121,42 +109,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): static
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(string $firstName): static
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getAvatar(): ?string
-    {
-        return $this->avatar;
-    }
-
-    public function setAvatar(?string $avatar): static
-    {
-        $this->avatar = $avatar;
-
-        return $this;
-    }
-
     public function isEnabled(): ?bool
     {
         return $this->enabled;
@@ -165,30 +117,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEnabled(bool $enabled): static
     {
         $this->enabled = $enabled;
-
-        return $this;
-    }
-
-    public function getAverageDailyRate(): ?float
-    {
-        return $this->averageDailyRate;
-    }
-
-    public function setAverageDailyRate(?float $averageDailyRate): static
-    {
-        $this->averageDailyRate = $averageDailyRate;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }
@@ -213,6 +141,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVerificationEmailSentAt(?\DateTimeImmutable $verificationEmailSentAt): static
     {
         $this->verificationEmailSentAt = $verificationEmailSentAt;
+
+        return $this;
+    }
+
+    public function getUserProfile(): ?UserProfile
+    {
+        return $this->userProfile;
+    }
+
+    public function setUserProfile(UserProfile $userProfile): static
+    {
+        // set the owning side of the relation if necessary
+        if ($userProfile->getUser() !== $this) {
+            $userProfile->setUser($this);
+        }
+
+        $this->userProfile = $userProfile;
 
         return $this;
     }

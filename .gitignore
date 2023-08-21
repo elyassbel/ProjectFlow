@@ -21,4 +21,4 @@ yarn-error.log
 ###< liip/imagine-bundle ###
 
 /.idea/
-/public/images/upload/
+/public/images/uploads/

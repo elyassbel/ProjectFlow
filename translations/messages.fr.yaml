@@ -1,5 +1,66 @@
+welcome: Accueil
+logout: Se déconnecter
+
+app:
+  title: Project Flow
+
+footer:
+  text: Freelance helper tool by Elyass.
+
+hireme:
+  title: Engagez-moi
+  text: Avez-vous besoin d'aide pour un projet similaire ou tout projet basé sur Symfony ?
+
+social:
+  website: https://elyassbel.pro/
+  linkedin: https://www.linkedin.com/in/elyass-bel/
+
+menu:
+  menu: Menu
+  dashboard: Tableau de bord
+  client: Clients
+  project: Projets
+  invoice: Factures
+  contact: Contacts
+  setting: Paramètres
+  admin:
+    admin: Section administrateur
+    users: Utilisateurs
+
 btn:
   edit: Modifier
   show: Voir
   delete: Supprimer
   disable: Désactiver
+
+# PAGES
+dashboard:
+  title: Tableau de bord
+
+settings:
+  title: Paramètres
+  nav:
+    title: Menu des paramètres
+    profile: Mon profil
+    email: Email
+    security: Sécurité
+    preferences: Préférences du compte
+  profile:
+    title: Mon profil
+    details: Informations personelles
+    business: Mon entreprise
+    other: Autres
+  email:
+    title: Email
+    verification:
+      current_email: Votre adresse email actuelle est
+      verified:
+        text: Cette adresse email
+        yes: est vérifiée
+        no: n'est pas vérifiée
+      send_email: Envoyer l'email de vérification
+      email_will_be_sent: Un email de vérification sera envoyé à la nouvelle adresse email
+  security:
+    title: Sécurité
+  preferences:
+    title: Préférences du compte

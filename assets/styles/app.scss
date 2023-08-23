@@ -1,10 +1,13 @@
 @import "variables";
-@import "~bootstrap/scss/bootstrap";
-@import "~@fortawesome/fontawesome-free/css/all.min.css";
 
-// Customs
-@import "datatables";
+// FONTS
+//@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
-body {
-    background-color: lightgray;
-}
+// ADMIN THEME
+@import "../adminkit/styles/app.css";
+
+// LIBRARIES
+//@import "datatables";
+
+// CUSTOMS

@@ -37,6 +37,7 @@ btn:
   show: Voir
   delete: Supprimer
   disable: Désactiver
+  save: Enregistrer
 
 # PAGES
 dashboard:
@@ -45,7 +46,7 @@ dashboard:
 settings:
   title: Paramètres
   nav:
-    title: Menu des paramètres
+    title: Menu
     profile: Mon profil
     email: Email
     security: Sécurité

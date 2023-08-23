@@ -14,4 +14,9 @@
 @import "common";
 @import "sidebar";
 @import "alerts";
-
+.list-group {
+  --bs-list-group-bg: #fff;
+  .list-group-item {
+    padding: 12px 20px;
+  }
+}

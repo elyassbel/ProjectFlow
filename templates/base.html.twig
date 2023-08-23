@@ -19,12 +19,12 @@
     <div class="wrapper">
         {{ include('__includes/_sidebar.html.twig') }}
         <div class="main">
-{#            {{ include('__includes/_navebar.html.twig') }}#}
+            {# {{ include('__includes/_navebar.html.twig') }}#}
             <main class="content">
-                {{ include('__includes/_impersonation.html.twig') }}
-                {{ include('__includes/_flashes.html.twig') }}
                 {% block content %}
-                    <div class="container-fluid p-0">
+                    <div class="container p-0"> {# container-fluid instead of container to make it fuild (100%) #}
+                        {{ include('__includes/_impersonation.html.twig') }}
+                        {{ include('__includes/_flashes.html.twig') }}
                         <h1 class="h3 mb-3">{% block page_title %}Blank Page{% endblock %}</h1>
                         {% block page_content %}
                             <div class="row">

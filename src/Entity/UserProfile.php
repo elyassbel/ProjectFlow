@@ -186,7 +186,7 @@ class UserProfile implements \Serializable
 
     public function __toString(): string
     {
-        return $this->lastName.' '.$this->firstName;
+        return $this->firstName;
     }
 
     /** @see \Serializable::serialize() */

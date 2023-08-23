@@ -4,6 +4,7 @@ require('./adminkit/app.js');
 
 // BOOTSTRAP
 //import { Tooltip, Toast, Popover } from 'bootstrap';
+import 'bootstrap/js/dist/alert'
 
 // JQUERY
 const $ = require('jquery');

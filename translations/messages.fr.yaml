@@ -1,8 +1,13 @@
 welcome: Accueil
 logout: Se déconnecter
+impersonation:
+  text: Vous êtes actuellement connecté en tant que
+  exit: Retour à mon compte
 
 app:
   title: Project Flow
+  description: Project Flow
+  author: Elyass Belahcen
 
 footer:
   text: Freelance helper tool by Elyass.

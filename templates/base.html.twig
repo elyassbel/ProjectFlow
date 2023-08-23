@@ -1,181 +1,51 @@
 <!DOCTYPE html>
 <html lang="fr" data-bs-theme="auto">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="project flow">
-        <meta name="author" content="Elyass Belahcen">
-        <title>Project Flow - {% block title %}Welcome!{% endblock %}</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{ 'app.description'|trans }}">
+    <meta name="author" content="{{ 'app.author'|trans }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" href="{{ asset('images/icon-48x48.png') }}" />
 
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
-            <style>
-                .bd-placeholder-img {
-                    font-size: 1.125rem;
-                    text-anchor: middle;
-                    -webkit-user-select: none;
-                    -moz-user-select: none;
-                    user-select: none;
-                }
+    <title>{{ 'app.title'|trans }} - {{ block('page_title') }}</title>
 
-                @media (min-width: 768px) {
-                    .bd-placeholder-img-lg {
-                        font-size: 3.5rem;
-                    }
-                }
+    {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
+    {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
+</head>
 
-                .b-example-divider {
-                    width: 100%;
-                    height: 3rem;
-                    background-color: rgba(0, 0, 0, .1);
-                    border: solid rgba(0, 0, 0, .15);
-                    border-width: 1px 0;
-                    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-                }
-
-                .b-example-vr {
-                    flex-shrink: 0;
-                    width: 1.5rem;
-                    height: 100vh;
-                }
-
-                .bi {
-                    vertical-align: -.125em;
-                    fill: currentColor;
-                }
-
-                .nav-scroller {
-                    position: relative;
-                    z-index: 2;
-                    height: 2.75rem;
-                    overflow-y: hidden;
-                }
-
-                .nav-scroller .nav {
-                    display: flex;
-                    flex-wrap: nowrap;
-                    padding-bottom: 1rem;
-                    margin-top: -1px;
-                    overflow-x: auto;
-                    text-align: center;
-                    white-space: nowrap;
-                    -webkit-overflow-scrolling: touch;
-                }
-
-                .btn-bd-primary {
-                    --bd-violet-bg: #712cf9;
-                    --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-                    --bs-btn-font-weight: 600;
-                    --bs-btn-color: var(--bs-white);
-                    --bs-btn-bg: var(--bd-violet-bg);
-                    --bs-btn-border-color: var(--bd-violet-bg);
-                    --bs-btn-hover-color: var(--bs-white);
-                    --bs-btn-hover-bg: #6528e0;
-                    --bs-btn-hover-border-color: #6528e0;
-                    --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-                    --bs-btn-active-color: var(--bs-btn-hover-color);
-                    --bs-btn-active-bg: #5a23c8;
-                    --bs-btn-active-border-color: #5a23c8;
-                }
-                .bd-mode-toggle {
-                    z-index: 1500;
-                }
-
-
-                .bd-placeholder-img {
-                    font-size: 1.125rem;
-                    text-anchor: middle;
-                    -webkit-user-select: none;
-                    -moz-user-select: none;
-                    user-select: none;
-                }
-
-                @media (min-width: 768px) {
-                    .bd-placeholder-img-lg {
-                        font-size: 3.5rem;
-                    }
-                }
-
-                .b-example-divider {
-                    width: 100%;
-                    height: 3rem;
-                    background-color: rgba(0, 0, 0, .1);
-                    border: solid rgba(0, 0, 0, .15);
-                    border-width: 1px 0;
-                    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-                }
-
-                .b-example-vr {
-                    flex-shrink: 0;
-                    width: 1.5rem;
-                    height: 100vh;
-                }
-
-                .bi {
-                    vertical-align: -.125em;
-                    fill: currentColor;
-                }
-
-                .nav-scroller {
-                    position: relative;
-                    z-index: 2;
-                    height: 2.75rem;
-                    overflow-y: hidden;
-                }
-
-                .nav-scroller .nav {
-                    display: flex;
-                    flex-wrap: nowrap;
-                    padding-bottom: 1rem;
-                    margin-top: -1px;
-                    overflow-x: auto;
-                    text-align: center;
-                    white-space: nowrap;
-                    -webkit-overflow-scrolling: touch;
-                }
-
-                .btn-bd-primary {
-                    --bd-violet-bg: #712cf9;
-                    --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-                    --bs-btn-font-weight: 600;
-                    --bs-btn-color: var(--bs-white);
-                    --bs-btn-bg: var(--bd-violet-bg);
-                    --bs-btn-border-color: var(--bd-violet-bg);
-                    --bs-btn-hover-color: var(--bs-white);
-                    --bs-btn-hover-bg: #6528e0;
-                    --bs-btn-hover-border-color: #6528e0;
-                    --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-                    --bs-btn-active-color: var(--bs-btn-hover-color);
-                    --bs-btn-active-bg: #5a23c8;
-                    --bs-btn-active-border-color: #5a23c8;
-                }
-                .bd-mode-toggle {
-                    z-index: 1500;
-                }
-
-            </style>
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        <main class="d-flex flex-nowrap">
-            {{ include('_common/_sidebar.html.twig') }}
-
-            <div class="d-flex flex-column flex-shrink-0 p-3 container">
-                {% if is_granted('IS_IMPERSONATOR') %}
-                    <div class="alert alert-info">
-                        YOU ARE NOW LOGGED AS {{ app.user.userIdentifier }} : <a href="{{ impersonation_exit_path(path('app_dashboard') ) }}">Exit impersonation</a>
+<body>
+    <div class="wrapper">
+        {{ include('__includes/_sidebar.html.twig') }}
+        <div class="main">
+            {{ include('__includes/_navebar.html.twig') }}
+            <main class="content">
+                {{ include('__includes/_impersonation.html.twig') }}
+                {{ include('__includes/_flashes.html.twig') }}
+                {% block content %}
+                    <div class="container-fluid p-0">
+                        <h1 class="h3 mb-3">{% block page_title %}Blank Page{% endblock %}</h1>
+                        {% block page_content %}
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title mb-0">{% block page_simple_title %}Empty card{% endblock %}</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            {% block page_simple_content %}{% endblock %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endblock %}
                     </div>
-                {% endif %}
-                {{ include('_common/_flashes.html.twig') }}
-                {% block body %}{% endblock %}
-            </div>
-        </main>
-    </body>
+                {% endblock %}
+            </main>
+
+            {{ include('__includes/_footer.html.twig') }}
+        </div>
+    </div>
+</body>
 </html>

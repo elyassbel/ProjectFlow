@@ -1,0 +1,90 @@
+.alert {
+  --bs-alert-bg: transparent;
+  --bs-alert-padding-x: 0.95rem;
+  --bs-alert-padding-y: 0.95rem;
+  --bs-alert-margin-bottom: 1rem;
+  --bs-alert-color: inherit;
+  --bs-alert-border-color: transparent;
+  --bs-alert-border: 0 solid var(--bs-alert-border-color);
+  --bs-alert-border-radius: var(--bs-border-radius);
+  --bs-alert-link-color: inherit;
+  background-color: var(--bs-alert-bg);
+  border: var(--bs-alert-border);
+  border-radius: var(--bs-alert-border-radius);
+  color: var(--bs-alert-color);
+  margin-bottom: var(--bs-alert-margin-bottom);
+  padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
+  position: relative;
+}
+
+.alert {
+  color: #212529;
+  display: flex;
+  padding: 0
+}
+
+.alert-dismissible {
+  padding-right: 2.85rem;
+}
+
+.alert-dismissible .btn-close {
+  padding: 1.1875rem 0.95rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.alert .close:focus,.alert .close:hover {
+  opacity: 1
+}
+
+.alert-icon {
+  background: rgba(0,0,0,.05);
+  padding: .95rem
+}
+
+.alert-message {
+  box-sizing: border-box;
+  padding: .95rem;
+  width: 100%
+}
+
+.alert-primary {
+  background: #d8e5f8
+}
+
+.alert-primary {
+  --bs-alert-color: var(--bs-primary-text-emphasis);
+  --bs-alert-bg: var(--bs-primary-bg-subtle);
+  --bs-alert-border-color: var(--bs-primary-border-subtle);
+  --bs-alert-link-color: var(--bs-primary-text-emphasis);
+}
+
+.alert-secondary {
+  background: #e2e3e5
+}
+
+.alert-success {
+  background: #d2f1e8
+}
+
+.alert-info {
+  background: #d1ecf1
+}
+
+.alert-warning {
+  background: #fef1d5
+}
+
+.alert-danger {
+  background: #f8d7da
+}
+
+.alert-light {
+  background: #fdfdfe
+}
+
+.alert-dark {
+  background: #d3d3d4
+}

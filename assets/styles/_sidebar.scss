@@ -1,0 +1,18 @@
+.sidebar-user {
+  padding: 0.75rem 1.5rem;
+  a {
+    outline: 0;
+    text-decoration: none;
+  }
+}
+.sidebar-user a {
+  outline: 0;
+  text-decoration: none;
+}
+.sidebar-user-title, .sidebar-user-title:hover, body[data-theme=dark] .sidebar-user-title, body[data-theme=dark] .sidebar-user-title:hover {
+  color: #e9ecef;
+}
+
+.sidebar-user-subtitle, body[data-theme=dark] .sidebar-user-subtitle {
+  color: #adb5bd;
+}

@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Entity\UserProfile;
 use App\Form\SettingEmailType;
 use App\Form\UserProfileType;
 use App\Repository\UserRepository;

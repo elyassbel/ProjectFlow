@@ -1,4 +1,55 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Information du compte</h5>
+        </div>
+        <div class="card-body">
+            {{ form_row(form.email) }}
+            <div class="row g-4">
+                <div class="col-md">{{ form_row(form.roles) }}</div>
+                <div class="col-md">{{ form_row(form.enabled) }}</div>
+                <div class="col-md">{{ form_row(form.verified) }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Information personelles</h5>
+        </div>
+        <div class="card-body">
+            <div class="row g-4">
+                <div class="col-md">{{ form_row(form.userProfile.lastName) }}</div>
+                <div class="col-md">{{ form_row(form.userProfile.firstName) }}</div>
+            </div>
+            {{ form_row(form.userProfile.avatarFile) }}
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Entreprise</h5>
+        </div>
+        <div class="card-body">
+            {{ form_row(form.userProfile.averageDailyRate) }}
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Autres</h5>
+        </div>
+        <div class="card-body">
+            <div class="row g-4">
+                <div class="col-md">{{ form_row(form.userProfile.locale) }}</div>
+                <div class="col-md">{{ form_row(form.userProfile.currency) }}</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="mt-2 d-flex justify-content-between">
+        <a href="{{ path('app_admin_user') }}" class="btn btn-outline-secondary" ><- back to list</a>
+        <input type="submit" class="btn btn-primary" value="{{ 'btn.save'|trans }}">
+    </div>
 {{ form_end(form) }}

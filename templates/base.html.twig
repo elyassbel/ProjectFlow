@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    {% block body %}
     <div class="wrapper">
         {{ include('__includes/_sidebar.html.twig') }}
         <div class="main">
@@ -47,5 +48,6 @@
             {{ include('__includes/_footer.html.twig') }}
         </div>
     </div>
+    {% endblock %}
 </body>
 </html>

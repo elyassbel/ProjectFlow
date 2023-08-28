@@ -1,8 +1,8 @@
 {% trans_default_domain datatable.translationDomain %}
 
-<div class="table-responsive-sm">
+<div class="dataTables_wrapper dt-bootstrap5 no-footer">
     <table id="{{ datatable.name }}" class="{% if className is defined and className is not empty %}{{ className }}{% endif %}">
-        <thead class="table-dark">
+        <thead>
         <tr>
             {% for column in datatable.columns %}
                 <th>{{ column.label|trans }}</th>

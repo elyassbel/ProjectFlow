@@ -14,5 +14,5 @@ global.$ = global.jQuery = $;
 
 import 'datatables.net';
 
-//require('@fortawesome/fontawesome-free/js/all.js');
+require('@fortawesome/fontawesome-free/js/all.js');
 

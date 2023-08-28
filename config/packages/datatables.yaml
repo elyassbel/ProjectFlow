@@ -7,14 +7,15 @@ datatables:
         pageLength: 10
         searching: true
         pagingType: 'simple_numbers'
-        dom: "<'row' <'col-sm-12 text-right mb-2' f>><'row' <'col-sm-12' tr>><'row' <'col-sm-6'li><'col-sm-6 text-right' p>>" #f = search bar, tr = table, l = length change, i = "showing x to x entries", p = paging
+        dom: "<'row' <'col-sm-12 text-right mb-2' f>><'row dt-row' <'col-sm-12' tr>><'row' <'col-sm-6'li><'col-sm-6 text-right' p>>" #f = search bar, tr = table, l = length change, i = "showing x to x entries", p = paging
 
-    template: '_common/_datatable_html.html.twig'
+    template: '__includes/datatables/_datatable_html.html.twig'
 
     template_parameters:
         # Example classes to integrate nicely with Bootstrap 3.x
 #        className: 'table table-striped table-bordered table-hover data-table'
-        className: 'table table-hover data-table dataTable no-footer table-centered mb-0'
+#        className: 'table table-hover data-table dataTable no-footer table-centered mb-0'
+        className: 'table table-striped dataTable no-footer dtr-inline'
         columnFilter: 'thead'
 
     # You can for example override this to "tables" to keep the translation domains separated nicely

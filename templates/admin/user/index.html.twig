@@ -2,15 +2,21 @@
 
 {% block page_title %}Liste des utilisateurs{% endblock %}
 
+{% block page_actions %}<a class="btn btn-primary" href="{{ path('app_admin_user_new') }}" role="button">Add user</a>{% endblock %}
+
 {% block page_content %}
-    <div>
-    <a class="btn btn-primary" href="{{ path('app_admin_user_new') }}" role="button">Add user</a>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div id="data-table-instance">Loading...</div>
+                </div>
+            </div>
+        </div>
     </div>
-    <hr>
-    <div id="data-table-instance">Loading...</div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    {{ include('_common/_datatable_js.html.twig') }}
+    {{ include('__includes/datatables/_datatable_js.html.twig') }}
 {% endblock %}

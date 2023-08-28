@@ -36,7 +36,7 @@ class TableDefault
 
     protected function getActionsButtons($context, string $editPath = null, string $showPath = null, string $deletePath = null, bool $impersonate = false): string
     {
-        return $this->twig->render('_common/_datatables_actions.html.twig', [
+        return $this->twig->render('__includes/datatables/_datatables_actions.html.twig', [
             'row' => $context,
             'path' => [
                 'edit' => $editPath,

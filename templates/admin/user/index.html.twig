@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block page_title %}Liste des utilisateurs{% endblock %}
+{% block page_title %}{{ 'users.title'|trans }}{% endblock %}
 
-{% block page_actions %}<a class="btn btn-primary" href="{{ path('app_admin_user_new') }}" role="button">Add user</a>{% endblock %}
+{% block page_actions %}<a class="btn btn-primary" href="{{ path('app_admin_user_new') }}" role="button"><i class="fa-solid fa-plus"></i> {{ 'users.btn.add'|trans }}</a>{% endblock %}
 
 {% block page_content %}
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div id="data-table-instance">Loading...</div>
+                    <div id="data-table-instance">{{ 'loading'|trans }}</div>
                 </div>
             </div>
         </div>

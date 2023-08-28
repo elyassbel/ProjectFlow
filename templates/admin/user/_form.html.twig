@@ -1,7 +1,7 @@
 {{ form_start(form) }}
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title mb-0">Information du compte</h5>
+            <h5 class="card-title mb-0">{{ 'users.form_sections.account'|trans }}</h5>
         </div>
         <div class="card-body">
             {{ form_row(form.email) }}
@@ -15,7 +15,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title mb-0">Information personelles</h5>
+            <h5 class="card-title mb-0">{{ 'users.form_sections.personal'|trans }}</h5>
         </div>
         <div class="card-body">
             <div class="row g-4">
@@ -28,7 +28,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title mb-0">Entreprise</h5>
+            <h5 class="card-title mb-0">{{ 'users.form_sections.company'|trans }}</h5>
         </div>
         <div class="card-body">
             {{ form_row(form.userProfile.averageDailyRate) }}
@@ -37,7 +37,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title mb-0">Autres</h5>
+            <h5 class="card-title mb-0">{{ 'users.form_sections.other'|trans }}</h5>
         </div>
         <div class="card-body">
             <div class="row g-4">
@@ -49,7 +49,7 @@
 
 
     <div class="mt-2 d-flex justify-content-between">
-        <a href="{{ path('app_admin_user') }}" class="btn btn-outline-secondary" ><- back to list</a>
+        <a href="{{ path('app_admin_user') }}" class="btn btn-outline-secondary" title="{{ 'btn.back'|trans }}"><i class="fa-solid fa-arrow-left"></i></a>
         <input type="submit" class="btn btn-primary" value="{{ 'btn.save'|trans }}">
     </div>
 {{ form_end(form) }}

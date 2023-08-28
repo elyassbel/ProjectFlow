@@ -1,5 +1,7 @@
 welcome: Accueil
 logout: Se déconnecter
+loading: Chargement...
+
 impersonation:
   text: Vous êtes actuellement connecté en tant que
   exit: Retour à mon compte
@@ -39,6 +41,20 @@ btn:
   disable: Désactiver
   save: Enregistrer
   validate: Valider
+  back: Retour
+
+label:
+  enabled: Activé
+  not_enabled: Non activé
+  verified: Vérifié
+  not_verified: Non vérifié
+
+flashes:
+  error: Une erreur est survenue, merci de réessayer
+  edit: Modifications enregistrées !
+
+confirm:
+  delete: Voulez-vous vraiment supprimer cet élément ?
 
 # PAGES
 dashboard:
@@ -98,3 +114,24 @@ settings:
     title: Sécurité
   preferences:
     title: Préférences du compte
+
+users:
+  title: Liste des utilisateurs
+  new:
+    title: Ajouter un utilisateur
+  edit:
+    title: Modifier l'utilisateur
+  show:
+    title: Fiche
+    extra: Extra
+    account: Compte
+    created_at: Compte crée le
+    verification_email_sent_at: Email de vérification envoyé le
+    id: N° id
+  form_sections:
+    account: Information du compte
+    personal: Information personelles
+    company: Entreprise
+    other: Autres
+  btn:
+    add: Ajouter un utilisateur

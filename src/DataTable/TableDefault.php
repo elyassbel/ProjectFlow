@@ -13,8 +13,8 @@ class TableDefault
     protected function getYesNoOptions($searchable = false): array
     {
         return [
-            'trueValue' => 'yes',
-            'falseValue' => 'no',
+            'trueValue' => '<span class="badge bg-success me-1 my-1">Oui</span>',
+            'falseValue' => '<span class="badge bg-warning me-1 my-1">Non</span>',
             'globalSearchable' => $searchable,
         ];
     }

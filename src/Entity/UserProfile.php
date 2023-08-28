@@ -79,6 +79,11 @@ class UserProfile implements \Serializable
         return $this;
     }
 
+    public function getFullName(): string
+    {
+        return $this->firstName.' '.$this->lastName;
+    }
+
     public function getAverageDailyRate(): ?float
     {
         return $this->averageDailyRate;

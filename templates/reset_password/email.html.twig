@@ -1,9 +1,26 @@
-<h1>Hi!</h1>
+{% extends '__includes/layouts/_email.html.twig' %}
 
-<p>To reset your password, please visit the following link</p>
+{% trans_default_domain 'emails' %}
 
-<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
+{% block email_title %}{{ 'reset_password.title'|trans }}{% endblock %}
 
-<p>This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
-
-<p>Cheers!</p>
+{% block email_content %}
+    <p class="first">
+        <strong>{{ 'hello'|trans }}</strong> <br>
+        {{ 'reset_password.text'|trans }}
+    </p>
+    <p>{{ 'reset_password.your_email'|trans }} {{ emailFormData }}</p>
+    <br>
+    <center>
+        <button href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ 'reset_password.btn'|trans }}</button>
+        <br>
+        <small>
+            {{ 'reset_password.small'|trans }}
+            <a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
+            <br>
+            {{ 'reset_password.expiration'|trans }} {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+        </small>
+    </center>
+    <hr>
+    <small>{{ 'reset_password.ignore'|trans }}</small>
+{% endblock %}

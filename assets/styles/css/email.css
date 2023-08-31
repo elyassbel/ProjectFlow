@@ -1,0 +1,77 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(245, 247, 251);
+    color: rgb(73, 80, 87);
+    font-family: Inter, "Helvetica Neue", Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+table.container {
+    padding: 20px;
+}
+table.container.outside {
+    background-color: rgb(245, 247, 251);
+    margin: 0.5rem auto;
+    text-align: center;
+}
+
+p.footer {
+    text-align: center;
+    font-style: italic;
+}
+
+h1 {
+    color: rgb(73, 80, 87);
+    font-weight: 400;
+    line-height: 1.2;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+p.first {
+    margin-top: 1.5rem;
+}
+
+small {
+    color: rgb(73, 80, 87);
+}
+
+hr {
+    border: none;
+    border-top: 3px solid rgb(73, 80, 87);
+    margin: 20px;
+}
+
+/*h1 {*/
+/*    background-color: #264459;*/
+/*    color: #ffffff;*/
+/*    !*padding: 30px 0 50px 0;*!*/
+/*    font-weight: normal;*/
+/*}*/
+/*hr {*/
+/*    border: none;*/
+/*    border-top: 3px solid #264459;*/
+/*    margin: 20px;*/
+/*}*/
+/*.welcome {*/
+/*    background-color: #264459;*/
+/*}*/
+/*.bottom {*/
+/*    background-color: #efefee;*/
+/*}*/
+/*.logo {*/
+/*    width: 100%;*/
+/*}*/
+/*.text-center {*/
+/*    text-align: center;*/
+/*}*/
+/*table.button a {*/
+/*    background-color: #264459;*/
+/*}*/
+/*table.button table td {*/
+/*    background-color: #264459;*/
+/*    border: 2px solid #264459;*/
+/*}*/

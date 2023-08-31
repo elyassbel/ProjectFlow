@@ -1,0 +1,15 @@
+app:
+  title: Admin ProjectFlow
+  footer: ProjectFlow par Elyass Web Prod.
+
+hello: Bonjour,
+
+reset_password:
+  title: Réinitialisation du mot de passe
+  subject: Réinitialisation du mot de passe sur ProjectFlow
+  text: Quelqu'un a demandé que le mot de passe soit réinitialisé pour le compte suivant
+  your_email: 'Votre email :'
+  btn: Cliquez ici pour réinitialiser
+  small: Si le bouton ne s'affiche pas, utilisez ce lien
+  expiration: Le lien sera expiré dans
+  ignore: Si c'était une erreur, ignorez simplement cet email et rien ne se produira.

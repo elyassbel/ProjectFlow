@@ -1,0 +1,25 @@
+{% trans_default_domain 'emails' %}
+
+{% apply inky_to_html|inline_css(source('@styles/css/foundation-emails.css'), source('@styles/css/email.css')) %}
+    <container class="outside">
+        <row>
+            <columns><h1>{% block email_title %}{% endblock %}</h1></columns>
+        </row>
+    </container>
+
+    <container>
+        <row>
+            <columns>
+                {% block email_content %}{% endblock %}
+            </columns>
+        </row>
+    </container>
+
+    <container class="outside">
+        <row>
+            <columns>
+                <p class="footer">{{ 'app.footer'|trans }}</p>
+            </columns>
+        </row>
+    </container>
+{% endapply %}

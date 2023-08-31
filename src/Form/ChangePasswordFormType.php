@@ -20,26 +20,30 @@ class ChangePasswordFormType extends AbstractType
                 'options' => [
                     'attr' => [
                         'autocomplete' => 'new-password',
+                        'placeholder' => 'change_password.plainPassword.first_options.placeholder'
                     ],
                 ],
                 'first_options' => [
                     'constraints' => [
                         new NotBlank([
-                            'message' => 'Please enter a password',
+                            'message' => 'change_password.plainPassword.not_blank',
                         ]),
                         new Length([
                             'min' => 6,
-                            'minMessage' => 'Your password should be at least {{ limit }} characters',
+                            'minMessage' => 'change_password.plainPassword.length',
                             // max length allowed by Symfony for security reasons
                             'max' => 4096,
                         ]),
                     ],
-                    'label' => 'New password',
+                    'label' => 'change_password.plainPassword.first_options.label',
                 ],
                 'second_options' => [
-                    'label' => 'Repeat Password',
+                    'label' => 'change_password.plainPassword.second_options.label',
+                    'attr' => [
+                        'placeholder' => 'change_password.plainPassword.second_options.placeholder'
+                    ]
                 ],
-                'invalid_message' => 'The password fields must match.',
+                'invalid_message' => 'change_password.plainPassword.invalid_message',
                 // Instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
@@ -49,6 +53,6 @@ class ChangePasswordFormType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([]);
+        $resolver->setDefaults(['translation_domain' => 'forms']);
     }
 }

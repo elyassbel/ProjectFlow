@@ -7,10 +7,11 @@ use App\Security\EmailVerifier;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class UserService
 {
-    public function __construct(private readonly EmailVerifier $emailVerifier, private readonly UserPasswordHasherInterface $hasher)
+    public function __construct(private readonly EmailVerifier $emailVerifier, private readonly UserPasswordHasherInterface $hasher, private readonly TranslatorInterface $translator)
     {
     }
 
@@ -28,9 +29,9 @@ class UserService
         }
         // Send Email
         $this->emailVerifier->sendEmailConfirmation($path, $user, (new TemplatedEmail())
-            ->from(new Address('bot@projectflow.com', 'Project Flow App'))
+            ->from(new Address('bot@projectflow.com', $this->translator->trans('app.title', [], 'emails')))
             ->to($user->getEmail())
-            ->subject('Please Confirm your Email')
+            ->subject($this->translator->trans('confirmation_email.subject', [], 'emails'))
             ->htmlTemplate($template)
         );
         $user->setVerificationEmailSentAt(new \DateTimeImmutable());

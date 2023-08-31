@@ -14,9 +14,9 @@ class SettingEmailType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'New email address',
+                'label' => 'setting_email.email.label',
                 'attr' => [
-                    'placeholder' => 'Saisir la nouvelle adresse e-mail',
+                    'placeholder' => 'setting_email.email.placeholder',
                 ],
                 'data' =>''
             ])
@@ -27,6 +27,7 @@ class SettingEmailType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'translation_domain' => 'forms',
         ]);
     }
 }

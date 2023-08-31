@@ -3,6 +3,8 @@ app:
   footer: ProjectFlow par Elyass Web Prod.
 
 hello: Bonjour,
+expiration: Le lien sera expiré dans
+btn_do_not_show: Si le bouton ne s'affiche pas, utilisez ce lien
 
 reset_password:
   title: Réinitialisation du mot de passe
@@ -10,6 +12,10 @@ reset_password:
   text: Quelqu'un a demandé que le mot de passe soit réinitialisé pour le compte suivant
   your_email: 'Votre email :'
   btn: Cliquez ici pour réinitialiser
-  small: Si le bouton ne s'affiche pas, utilisez ce lien
-  expiration: Le lien sera expiré dans
   ignore: Si c'était une erreur, ignorez simplement cet email et rien ne se produira.
+
+confirmation_email:
+  title: Veuillez vérifier votre email
+  subject: Veuillez vérifier votre email sur ProjectFlow
+  text: Merci de confirmer votre adresse email en cliquant sur le lien ci dessous
+  btn: Verifier mon email

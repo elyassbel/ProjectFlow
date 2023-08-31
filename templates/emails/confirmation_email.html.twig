@@ -1,11 +1,24 @@
-<h1>Hi! Please confirm your email!</h1>
+{% extends '__includes/layouts/_email.html.twig' %}
 
-<p>
-    Please confirm your email address by clicking the following link: <br><br>
-    <a href="{{ signedUrl|raw }}">Confirm my Email</a>.
-    This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
-</p>
+{% trans_default_domain 'emails' %}
 
-<p>
-    Cheers!
-</p>
+{% block email_title %}{{ 'confirmation_email.title'|trans }}{% endblock %}
+
+{% block email_content %}
+    <p class="first">
+        <strong>{{ 'hello'|trans }}</strong> <br>
+        {{ 'confirmation_email.text'|trans }}
+    </p>
+    <br>
+    <center>
+        <button href="{{ signedUrl|raw }}">{{ 'confirmation_email.btn'|trans }}</button>
+        <br>
+        <small>
+            {{ 'btn_do_not_show'|trans }}
+            <a href="{{ signedUrl|raw }}">{{ signedUrl|raw }}</a>
+            <br>
+            {{ 'expiration'|trans }} {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+        </small>
+    </center>
+    <hr>
+{% endblock %}

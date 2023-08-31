@@ -18,33 +18,34 @@ class UserProfileType extends AbstractType
     {
         $builder
             ->add('lastName', TextType::class, [
-                'label' => 'Lastname',
+                'label' => 'user_profile.lastName.label',
             ])
             ->add('firstName', TextType::class, [
-                'label' => 'Firstname',
+                'label' => 'user_profile.firstName.label',
             ])
             ->add('averageDailyRate', NumberType::class, [
-                'label' => 'Average Daily Rate',
+                'label' => 'user_profile.averageDailyRate.label',
                 'attr' => [
                     'min' => 0,
                 ],
                 'required' => false,
             ])
-            ->add('locale', ChoiceType::class, [
+            ->add('locale', ChoiceType::class, [ //todo: add Locale Entity
+                'label' => 'user_profile.locale.label',
                 'choices' => [
-                    'English' => 'en',
-                    'Français' => 'fr',
+                    'user_profile.locale.choices.french' => 'FR',
                 ],
             ])
-            ->add('currency', ChoiceType::class, [
+            ->add('currency', ChoiceType::class, [  //todo: add Currency Entity
+                'label' => 'user_profile.currency.label',
                 'choices' => [
-                    '€' => '€',
-                    '$' => '$',
-                    '£' => '£',
+                    'user_profile.currency.choices.euro' => '€',
+                    'user_profile.currency.choices.dollar' => '$',
+                    'user_profile.currency.choices.pound' => '£',
                 ],
             ])
             ->add('avatarFile', VichImageType::class, [
-                'label' => 'Avatar',
+                'label' => 'user_profile.avatarFile.label',
                 'required' => false,
                 'download_uri' => false,
                 'imagine_pattern' => 'image120x120',
@@ -62,6 +63,7 @@ class UserProfileType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => UserProfile::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }

@@ -52,14 +52,14 @@ class SettingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 if ($currentEmail == $form->getData()->getEmail()) {
-                    $this->addFlash('info', 'This is already your current email address');
+                    $this->addFlash('info', 'flashes.email.already_current');
 
                     return $this->redirectToRoute('app_setting_email');
                 }
                 $user = $userService->sendVerificationEmail($user);
                 $entityManager->persist($user);
                 $entityManager->flush();
-                $this->addFlash('success', 'Email changed, check your inbox to verify the new email address');
+                $this->addFlash('success', 'flashes.email.email_changed');
 
                 return $this->redirectToRoute('app_setting_email');
             } catch (\Exception $e) {
@@ -83,7 +83,7 @@ class SettingController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Verification email sent !');
+            $this->addFlash('success', 'flashes.email.verification_sent');
         } catch (\Exception $e) {
             $this->addFlash('error', $e->getMessage());
         }
@@ -113,7 +113,7 @@ class SettingController extends AbstractController
             return $this->redirectToRoute('app_setting_email');
         }
 
-        $this->addFlash('success', 'Your email address has been verified.');
+        $this->addFlash('success', 'flashes.email.email_verified');
 
         return $this->redirectToRoute('app_setting_email');
     }

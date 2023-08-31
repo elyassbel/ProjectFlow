@@ -55,6 +55,11 @@ flashes:
   password_reset: Votre mot de passe a été réinitialisé !
   user:
     cant_deactivate: Vous ne pouvez pas désactiver votre propre compte !
+  email:
+    email_changed: Nouvelle adresse email enregistrée, vérifiez-la en cliquant sur le lien dans votre boite de reception
+    already_current: Cette adresse est déjà votre adresse email actuelle
+    verification_sent: Email de vérification envoyé
+    email_verified: Parfait ! Votre email a été vérifiée
 
 confirm:
   delete: Voulez-vous vraiment supprimer cet élément ?
@@ -112,6 +117,7 @@ settings:
         yes: est vérifiée
         no: n'est pas vérifiée
       send_email: Envoyer l'email de vérification
+      already_sent: Un email de vérification a été envoyé il y a moins de 10 minutes
       email_will_be_sent: Un email de vérification sera envoyé à la nouvelle adresse email
   security:
     title: Sécurité
@@ -131,6 +137,13 @@ users:
     created_at: Compte crée le
     verification_email_sent_at: Email de vérification envoyé le
     id: N° id
+    day: jour
+    fields:
+      email: Adresse email
+      LastName: Nom
+      FirstName: Prénom
+      AverageDailyRate: Taux journalier moyen
+      Locale: Langue
   form_sections:
     account: Information du compte
     personal: Information personelles

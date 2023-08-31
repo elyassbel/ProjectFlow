@@ -19,10 +19,12 @@
                 {% endif %}
             </p>
             {% if app.user.verificationEmailSentAt and not app.user.verified %}
-                {% if app.user.verificationEmailSentAt < date('-10minutes','Europe/Paris') %} {# todo: a tester à fond, pas sur du truc #}
+                {% if app.user.verificationEmailSentAt < date('-10minutes','Europe/Paris') %}
                     <p>
                         <a href="{{ path('app_setting_email_send_verification') }}">{{ 'settings.email.verification.send_email'|trans }}</a>
                     </p>
+                {% else %}
+                    <small>{{ 'settings.email.verification.already_sent'|trans }}</small>
                 {% endif %}
             {% endif %}
             <hr>
@@ -31,7 +33,7 @@
             <small>{{ 'settings.email.verification.email_will_be_sent'|trans }}</small>
             {{ include('setting/_form_buttons.html.twig') }}
             {{ form_end(form) }}
-            {# todo: email notification settings? #}
+            {# todo: email notification settings #}
         </div>
     </div>
 {% endblock %}

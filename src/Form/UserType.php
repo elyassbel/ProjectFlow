@@ -18,32 +18,32 @@ class UserType extends AbstractType
         $builder
             ->add('userProfile', UserProfileType::class)
             ->add('email', EmailType::class, [
-                'label' => 'Email',
+                'label' => 'user.email.label',
             ])
             ->add('roles', ChoiceType::class, [
-                'label' => 'Roles',
+                'label' => 'user.roles.label',
                 'choices' => [
-                    'Utilisateur' => 'ROLE_USER',
-                    'Administrateur' => 'ROLE_ADMIN',
-                    'Administrateur - Peut changer d\'utilisateur' => 'ROLE_ALLOWED_TO_SWITCH',
+                    'user.roles.choices.role_user' => 'ROLE_USER',
+                    'user.roles.choices.role_admin' => 'ROLE_ADMIN',
+                    'user.roles.choices.role_allowed_to_switch' => 'ROLE_ALLOWED_TO_SWITCH',
                 ],
                 'multiple' => true,
                 'expanded' => true,
                 'required' => true,
             ])
             ->add('enabled', ChoiceType::class, [
-                'label' => 'Enabled',
+                'label' => 'user.enabled.label',
                 'choices' => [
-                    'Yes' => true,
-                    'No' => false,
+                    'app.choices.yes' => true,
+                    'app.choices.no' => false,
                 ],
                 'expanded' => true,
             ])
             ->add('verified', ChoiceType::class, [
-                'label' => 'Verified',
+                'label' => 'user.verified.label',
                 'choices' => [
-                    'Yes' => true,
-                    'No' => false,
+                    'app.choices.yes' => true,
+                    'app.choices.no' => false,
                 ],
                 'expanded' => true,
             ])
@@ -54,6 +54,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'translation_domain' => 'forms',
         ]);
     }
 }

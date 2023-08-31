@@ -162,7 +162,7 @@ class ResetPasswordController extends AbstractController
             ->from(new Address('admin@projectflow.com', 'Project Flow Admin'))
             ->to($user->getEmail())
             ->subject($translator->trans('reset_password.subject', [], 'emails'))
-            ->htmlTemplate('reset_password/email.html.twig')
+            ->htmlTemplate('emails/reset_password.html.twig')
             ->context([
                 'resetToken' => $resetToken,
                 'emailFormData' => $emailFormData,

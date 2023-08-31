@@ -1,0 +1,61 @@
+app:
+  choices:
+    yes: Oui
+    no: Non
+
+change_password:
+  plainPassword:
+    first_options:
+      label: Nouveau mot de passe
+      placeholder: Saisir un mot de passe sécurisé
+    second_options:
+      label: Répéter le mot de passe
+      placeholder: Saisir le même mot de passe
+
+reset_password_request:
+  email:
+    label: Email
+    placeholder: Veuillez entrer votre email
+
+setting_email:
+  email:
+    label: Nouvelle adresse email
+    placeholder: Saisir la nouvelle adresse email
+
+user:
+  email:
+    label: Adresse email
+  roles:
+    label: Roles de l'utilisateur
+    choices:
+      role_user: Utilisateur
+      role_admin: Administrateur
+      role_allowed_to_switch: Administrateur - Peut changer d'utilisateur
+  enabled:
+    label: Compte activé ?
+  verified:
+    label: Adresse email vérifié ?
+
+user_profile:
+  lastName:
+    label: Nom
+  firstName:
+    label: Prénom
+  averageDailyRate:
+    label: Taux Journalier Moyen
+  locale:
+    label: Langue
+    choices:
+      french: Français
+  currency:
+    label: Devise
+    choices:
+      euro: €
+      dollar: $
+      pound: £
+  avatarFile:
+    label: Photo de profil
+
+vich_uploader:
+  form_label:
+    delete_confirm: Supprimer ?

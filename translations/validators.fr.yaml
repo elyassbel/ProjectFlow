@@ -1,0 +1,9 @@
+change_password:
+  plainPassword:
+    invalid_message: Les mots de passes doivent être identiques
+    not_blank: Veuillez saisir un mot de passe
+    length: Le mot de passe doit faire au moins {{ limit }} caractères
+
+reset_password_request:
+  email:
+    not_blank: Veuillez entrer votre email

@@ -60,23 +60,23 @@
                     <table class="table table-striped table-sm">
                         <tbody>
                         <tr>
-                            <th>Email</th>
+                            <th>{{ 'users.show.fields.email'|trans }}</th>
                             <td>{{ user.email }}</td>
                         </tr>
                         <tr>
-                            <th>LastName</th>
+                            <th>{{ 'users.show.fields.LastName'|trans }}</th>
                             <td>{{ user.userProfile.lastName }}</td>
                         </tr>
                         <tr>
-                            <th>FirstName</th>
+                            <th>{{ 'users.show.fields.FirstName'|trans }}</th>
                             <td>{{ user.userProfile.firstName }}</td>
                         </tr>
                         <tr>
-                            <th>AverageDailyRate</th>
-                            <td>{{ user.userProfile.averageDailyRate }}{{ user.userProfile.currency }}/d</td>
+                            <th>{{ 'users.show.fields.AverageDailyRate'|trans }}</th>
+                            <td>{{ user.userProfile.averageDailyRate }}{{ user.userProfile.currency }} / {{ 'users.show.day'|trans }}</td>
                         </tr>
                         <tr>
-                            <th>Locale</th>
+                            <th>{{ 'users.show.fields.Locale'|trans }}</th>
                             <td>{{ user.userProfile.locale }}</td>
                         </tr>
                         </tbody>

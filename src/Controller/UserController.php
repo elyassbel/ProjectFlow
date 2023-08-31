@@ -63,7 +63,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_user_show', methods: ['GET'])]
+    #[Route('/{id<\d+>}', name: 'app_admin_user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
         return $this->render('admin/user/show.html.twig', [
@@ -71,13 +71,17 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_admin_user_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id<\d+>}/edit', name: 'app_admin_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($this->getUser()->getId() == $user->getId() && !$user->isEnabled()) {
+                $user->setEnabled(true); //Can't deactivate current session
+                $this->addFlash('warning', 'flashes.user.cant_deactivate');
+            }
             $entityManager->flush();
             $this->addFlash('success', 'flashes.edit');
 
@@ -90,7 +94,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_user_delete', methods: ['POST'])]
+    #[Route('/{id<\d+>}', name: 'app_admin_user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         if ($this->getUser()->getId() == $user->getId()) {

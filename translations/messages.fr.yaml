@@ -52,6 +52,9 @@ label:
 flashes:
   error: Une erreur est survenue, merci de réessayer
   edit: Modifications enregistrées !
+  password_reset: Votre mot de passe a été réinitialisé !
+  user:
+    cant_deactivate: Vous ne pouvez pas désactiver votre propre compte !
 
 confirm:
   delete: Voulez-vous vraiment supprimer cet élément ?

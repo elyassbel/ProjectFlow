@@ -29,6 +29,7 @@ class UserType extends AbstractType
                 ],
                 'multiple' => true,
                 'expanded' => true,
+                'required' => true,
             ])
             ->add('enabled', ChoiceType::class, [
                 'label' => 'Enabled',

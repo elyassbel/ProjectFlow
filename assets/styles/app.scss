@@ -1,10 +1,22 @@
 @import "variables";
-@import "~bootstrap/scss/bootstrap";
-@import "~@fortawesome/fontawesome-free/css/all.min.css";
 
-// Customs
+// FONTS
+//@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+// ADMIN THEME
+@import "../adminkit/styles/app.css";
+
+// LIBRARIES
 @import "datatables";
 
-body {
-    background-color: lightgray;
+// CUSTOMS
+@import "common";
+@import "sidebar";
+@import "alerts";
+.list-group {
+  --bs-list-group-bg: #fff;
+  .list-group-item {
+    padding: 12px 20px;
+  }
 }

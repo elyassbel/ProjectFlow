@@ -1,0 +1,71 @@
+{% set sidebarmenu = [
+    {'label': 'menu.dashboard', 'route':'app_dashboard', 'icon':'home'},
+    {'label': 'menu.client', 'route':'', 'icon':'briefcase'},
+    {'label': 'menu.project', 'route':'', 'icon':'terminal'},
+    {'label': 'menu.invoice', 'route':'', 'icon':'file-text'},
+    {'label': 'menu.contact', 'route':'', 'icon':'book-open'},
+    {'label': 'menu.setting', 'route':'app_setting', 'icon':'settings'},
+] %}
+
+{% set adminmenu = [
+    {'label': 'menu.admin.users', 'route':'app_admin_user', 'icon':'users'},
+] %}
+
+<nav id="sidebar" class="sidebar js-sidebar">
+    <div class="sidebar-content js-simplebar">
+        <a class='sidebar-brand' href='{{ path('app_dashboard') }}'>
+            <span class="align-middle">{{ 'app.title'|trans }}</span>
+        </a>
+
+        <div class="sidebar-user">
+            <div class="d-flex justify-content-center">
+                <div class="flex-shrink-0">
+                    <img src="{{ asset('images/uploads/users/'~app.user.userProfile.avatarName) }}" class="avatar img-fluid rounded me-1" alt="{{ app.user.userProfile.avatarName }}" />
+                </div>
+                <div class="flex-grow-1 ps-2">
+                    <a class="sidebar-user-title dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="online-dot"></span> {{ app.user.userProfile }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-start" style="">
+                        <a class="dropdown-item" href="{{ path('app_logout') }}">{{ 'logout'|trans }}</a>
+                    </div>
+
+                    <div class="sidebar-user-subtitle">Company name</div>
+                </div>
+            </div>
+        </div>
+
+        <ul class="sidebar-nav">
+            <li class="sidebar-header">{{ 'menu.menu'|trans }}</li>
+            {% for item in sidebarmenu %}
+                <li class="sidebar-item {{ item.route in app.current_route and item.route ? 'active' }}">
+                    <a class='sidebar-link' href='{{ item.route ? path(item.route):'#' }}'>
+                        <i class="align-middle" data-feather="{{ item.icon }}"></i> <span class="align-middle">{{ item.label|trans }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="sidebar-header">{{ 'menu.admin.admin'|trans }}</li>
+                {% for item in adminmenu %}
+                    <li class="sidebar-item {{ item.route in app.current_route and item.route ? 'active' }}">
+                        <a class='sidebar-link' href='{{ item.route ? path(item.route):'#' }}'>
+                            <i class="align-middle" data-feather="{{ item.icon }}"></i> <span class="align-middle">{{ item.label|trans }}</span>
+                        </a>
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+
+        <div class="sidebar-cta">
+            <div class="sidebar-cta-content">
+                <strong class="d-inline-block mb-2">{{ 'hireme.title'|trans }}</strong>
+                <div class="mb-3 text-sm">
+                    {{ 'hireme.text'|trans }}
+                </div>
+                <div class="d-grid">
+                    <a class='btn btn-primary' target="_blank" href="{{ 'social.linkedin'|trans }}">{{ 'hireme.title'|trans }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

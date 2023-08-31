@@ -1,5 +1,137 @@
+welcome: Accueil
+logout: Se déconnecter
+loading: Chargement...
+
+impersonation:
+  text: Vous êtes actuellement connecté en tant que
+  exit: Retour à mon compte
+
+app:
+  title: Project Flow
+  description: Project Flow
+  author: Elyass Web Prod
+
+footer:
+  text: Tool developed by Elyass Web Prod.
+
+hireme:
+  title: Engagez-moi
+  text: Avez-vous besoin d'aide pour un projet similaire ou tout projet basé sur Symfony ?
+
+social:
+  website: https://elyassbel.pro/
+  linkedin: https://www.linkedin.com/in/elyass-bel/
+
+menu:
+  menu: Menu
+  dashboard: Tableau de bord
+  client: Clients
+  project: Projets
+  invoice: Factures
+  contact: Contacts
+  setting: Paramètres
+  admin:
+    admin: Section administrateur
+    users: Utilisateurs
+
 btn:
   edit: Modifier
   show: Voir
   delete: Supprimer
   disable: Désactiver
+  save: Enregistrer
+  validate: Valider
+  back: Retour
+
+label:
+  enabled: Activé
+  not_enabled: Non activé
+  verified: Vérifié
+  not_verified: Non vérifié
+
+flashes:
+  error: Une erreur est survenue, merci de réessayer
+  edit: Modifications enregistrées !
+
+confirm:
+  delete: Voulez-vous vraiment supprimer cet élément ?
+
+# PAGES
+dashboard:
+  title: Tableau de bord
+
+login:
+  title: Se connecter
+  subtitle: Bon retour !
+  text: Connectez-vous à votre compte pour continuer
+  form:
+    email:
+      label: Email
+      placeholder: Entrez votre email
+    password:
+      label: Mot de passe
+      placeholder: Entrez votre mot de passe
+    submit: Connexion
+  password_forgotten:
+    text: Mot de passe oublié ?
+    click: Cliquez ici
+
+reset_password:
+  title: Réinitialiser votre mot de passe
+  text: Entrez votre adresse e-mail, et nous vous enverrons un lien pour réinitialiser votre mot de passe.
+  submit: Recevoir l'email de réinitialisation
+  back: <- Retour à la connexion
+  check_email:
+    title: Email de réinitialisation de mot de passe envoyé
+    text1: Si un compte correspondant à votre adresse e-mail existe, alors un e-mail vient d'être envoyé. Cet e-mail contient un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.
+    text2: Ce lien expirera dans
+
+
+settings:
+  title: Paramètres
+  nav:
+    title: Menu
+    profile: Mon profil
+    email: Email
+    security: Sécurité
+    preferences: Préférences du compte
+  profile:
+    title: Mon profil
+    details: Informations personelles
+    business: Mon entreprise
+    other: Autres
+  email:
+    title: Email
+    verification:
+      current_email: Votre adresse email actuelle est
+      verified:
+        text: Cette adresse email
+        yes: est vérifiée
+        no: n'est pas vérifiée
+      send_email: Envoyer l'email de vérification
+      email_will_be_sent: Un email de vérification sera envoyé à la nouvelle adresse email
+  security:
+    title: Sécurité
+  preferences:
+    title: Préférences du compte
+
+users:
+  title: Liste des utilisateurs
+  new:
+    title: Ajouter un utilisateur
+  edit:
+    title: Modifier l'utilisateur
+  show:
+    title: Fiche
+    extra: Extra
+    account: Compte
+    created_at: Compte crée le
+    verification_email_sent_at: Email de vérification envoyé le
+    id: N° id
+  form_sections:
+    account: Information du compte
+    personal: Information personelles
+    company: Entreprise
+    other: Autres
+  btn:
+    add: Ajouter un utilisateur

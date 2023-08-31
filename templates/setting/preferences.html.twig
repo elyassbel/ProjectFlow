@@ -1,11 +1,17 @@
 {% extends 'setting/base.html.twig' %}
 
-{% block subtitle %}Account preferences{% endblock %}
+{% block page_subtitle %}{{ 'settings.preferences.title'|trans }}{% endblock %}
 
-{% block content %}
-    <h1 class="card-title">Account preferences</h1>
-    <p class="card-text">
-        Control settings related to your account.
-    </p>
+{% block page_setting_content %}
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">{{ 'settings.preferences.title'|trans }}</h5>
+        </div>
+        <div class="card-body">
+            <p>
+                Control settings related to your account.
+            </p>
+        </div>
+    </div>
     {# todo: Change language / Time zone / Delete account #}
 {% endblock %}

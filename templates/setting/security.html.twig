@@ -1,11 +1,16 @@
 {% extends 'setting/base.html.twig' %}
 
-{% block subtitle %}Sécurité{% endblock %}
+{% block page_subtitle %}{{ 'settings.security.title'|trans }}{% endblock %}
 
-{% block content %}
-    <h1 class="card-title">Security</h1>
-    <p>
-       Temporary : To change your password, please <a href="{{ path('app_logout') }}">log out</a> and use the "password forgotten" option
-        {# todo:form to change password #}
-    </p>
+{% block page_setting_content %}
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">{{ 'settings.security.title'|trans }}</h5>
+        </div>
+        <div class="card-body">
+            <p>
+                <span class="badge bg-info">Temporary</span> To change your password, please <a href="{{ path('app_logout') }}">log out</a> and use the "password forgotten" option
+            </p>
+        </div>
+    </div>
 {% endblock %}

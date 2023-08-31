@@ -1,11 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New User{% endblock %}
+{% block page_title %}{{ 'users.new.title'|trans }}{% endblock %}
 
-{% block body %}
-    <h1>Create new User</h1>
+{% block page_actions %}<a href="{{ path('app_admin_user') }}" class="btn btn-outline-secondary" title="{{ 'btn.back'|trans }}"><i class="fa-solid fa-arrow-left"></i></a>{% endblock %}
 
+{% block page_content %}
     {{ include('admin/user/_form.html.twig') }}
-
-    <a href="{{ path('app_admin_user') }}">back to list</a>
 {% endblock %}

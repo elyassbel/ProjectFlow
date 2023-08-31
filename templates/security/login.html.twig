@@ -1,33 +1,44 @@
-{% extends 'base.html.twig' %}
+{% extends '__includes/layouts/_security.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% import "__includes/macros/_flashblock.html.twig" as flashblock %}
 
-{% block body %}
+{% block page_title %}{{ 'login.title'|trans }}{% endblock %}
+
+{% block security_title %}{{ 'login.subtitle'|trans }}{% endblock %}
+
+{% block security_error %}
+    {% if error %}
+        {{ flashblock.input('danger', error.messageKey|trans(error.messageData, 'security')) }}
+    {% endif %}
+{% endblock %}
+
+{% block security_content_before %}
+    <p class="lead">
+        {{ 'login.text'|trans }}
+    </p>
+{% endblock %}
+
+{% block security_content %}
     <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
-
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail">Email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-        <label for="inputPassword">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        <div class="mb-3">
+            <label class="form-label" for="inputEmail">{{ 'login.form.email.label'|trans }}</label>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control form-control-lg" autocomplete="email" placeholder="{{ 'login.form.email.placeholder'|trans }}" required autofocus>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="inputPassword">{{ 'login.form.password.label'|trans }}</label>
+            <input type="password" name="password" id="inputPassword" class="form-control form-control-lg" autocomplete="current-password" placeholder="{{ 'login.form.password.placeholder'|trans }}" required>
+        </div>
 
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-        <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
-        </button>
+        <div class="d-grid gap-2 mt-3">
+            <button class="btn btn-lg btn-primary" type="submit">{{ 'login.form.submit'|trans }}</button>
+        </div>
     </form>
+{% endblock %}
 
-    <div>
-        <a href="{{ path('app_forgot_password_request') }}">password forgotten</a>
+{% block security_content_after %}
+    <div class="text-center mb-3">
+        {{ 'login.password_forgotten.text'|trans }} <a href="{{ path('app_forgot_password_request') }}">{{ 'login.password_forgotten.click'|trans }}</a>
     </div>
 {% endblock %}

@@ -1,26 +1,37 @@
 {% extends 'setting/base.html.twig' %}
 
-{% block subtitle %}Email{% endblock %}
+{% block page_subtitle %}{{ 'settings.email.title'|trans }}{% endblock %}
 
-{% block content %}
-    <h1 class="card-title">Email</h1>
-    <p>
-        Your current email address is <strong>{{ app.user.email }}</strong> <br>
-        This email <strong>{{ app.user.verified ? 'is verified':'is not verified' }}</strong>
-    </p>
-    {% if app.user.verificationEmailSentAt and not app.user.verified %}
-        {% set minutesLastEmailSent = app.user.verificationEmailSentAt.diff(date()).i %}
-        {% if minutesLastEmailSent > 9 %}
-            <div>
-                <a href="{{ path('app_setting_email_send_verification') }}">Send verification email</a>
-            </div>
-        {% endif %}
-    {% endif %}
-
-    {{ form_start(form) }}
-    {{ form_rest(form) }}
-    <input type="submit">
-    {{ form_end(form) }}
-
-    {# todo: email notification settings? #}
+{% block page_setting_content %}
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">{{ 'settings.email.title'|trans }}</h5>
+        </div>
+        <div class="card-body">
+            <p>
+                {{ 'settings.email.verification.current_email'|trans }} <strong>{{ app.user.email }}</strong>
+                <br>
+                {{ 'settings.email.verification.verified.text'|trans }}
+                {% if app.user.verified %}
+                    <strong class="text-success">{{ 'settings.email.verification.verified.yes'|trans }}</strong>
+                {% else %}
+                    <strong class="text-danger">{{ 'settings.email.verification.verified.no'|trans }}</strong>
+                {% endif %}
+            </p>
+            {% if app.user.verificationEmailSentAt and not app.user.verified %}
+                {% if app.user.verificationEmailSentAt < date('-10minutes','Europe/Paris') %} {# todo: a tester à fond, pas sur du truc #}
+                    <p>
+                        <a href="{{ path('app_setting_email_send_verification') }}">{{ 'settings.email.verification.send_email'|trans }}</a>
+                    </p>
+                {% endif %}
+            {% endif %}
+            <hr>
+            {{ form_start(form) }}
+            {{ form_rest(form) }}
+            <small>{{ 'settings.email.verification.email_will_be_sent'|trans }}</small>
+            {{ include('setting/_form_buttons.html.twig') }}
+            {{ form_end(form) }}
+            {# todo: email notification settings? #}
+        </div>
+    </div>
 {% endblock %}

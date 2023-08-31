@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main class="d-flex w-100">
+        <div class="container d-flex flex-column">
+            <div class="row vh-100">
+                <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
+                    <div class="d-table-cell align-middle">
+                        {% block security_error %}{% endblock %}
+
+                        <div class="text-center mt-4">
+                            <h1 class="h2">{% block security_title %}{% endblock %}</h1>
+                            {% block security_content_before %}{% endblock %}
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="m-sm-3">
+                                    {% block security_content %}{% endblock %}
+                                </div>
+                            </div>
+                        </div>
+                        {% block security_content_after %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,11 +1,46 @@
 {% extends 'setting/base.html.twig' %}
 
-{% block subtitle %}My profile{% endblock %}
+{% block page_subtitle %}{{ 'settings.profile.title'|trans }}{% endblock %}
 
-{% block content %}
-    <h1 class="card-title">My profile</h1>
+{% block page_setting_content %}
     {{ form_start(form) }}
-    {{ form_rest(form) }}
-    <input type="submit">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">{{ 'settings.profile.details'|trans }}</h5>
+        </div>
+        <div class="card-body">
+            <div class="row g-2">
+                <div class="col-md-8">{{ form_row(form.lastName) }}{{ form_row(form.firstName) }}</div>
+                <div class="col-md-4">{{ form_row(form.avatarFile) }}</div>
+            </div>
+{#            {{ include('setting/_form_buttons.html.twig') }}#}
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">{{ 'settings.profile.business'|trans }}</h5>
+        </div>
+        <div class="card-body">
+            <div class="row g-2">
+                <div class="col-md">{{ form_row(form.averageDailyRate) }}</div>
+                <div class="col-md">{{ form_row(form.currency) }}</div>
+            </div>
+{#            {{ include('setting/_form_buttons.html.twig') }}#}
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">{{ 'settings.profile.other'|trans }}</h5>
+        </div>
+        <div class="card-body">
+            <div class="row g-2">
+                <div class="col-md">{{ form_row(form.locale) }}</div>
+                <div class="col-md"></div>
+            </div>
+            {{ form_rest(form) }}
+        </div>
+    </div>
+
+    {{ include('setting/_form_buttons.html.twig') }}
     {{ form_end(form) }}
 {% endblock %}

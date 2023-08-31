@@ -1,0 +1,28 @@
+.online-dot {
+  background-color: #02a202;
+  border-radius: 50%;
+  display: inline-block;
+  height: 7px;
+  width: 7px;
+  vertical-align: middle;
+  animation-name: color-pulse;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes color-pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}

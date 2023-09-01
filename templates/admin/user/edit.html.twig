@@ -1,10 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends '__includes/layouts/_forms.html.twig' %}
 
 {% block page_title %}{{ 'users.edit.title'|trans }}{% endblock %}
 
 {% block page_actions %}
-    {{ include('admin/user/_buttons/_delete.html.twig') }}
     {{ include('admin/user/_buttons/_back.html.twig') }}
+    {{ include('admin/user/_buttons/_delete.html.twig') }}
+    {{ include('admin/user/_buttons/_submit.html.twig') }}
 {% endblock %}
 
 {% block page_content %}

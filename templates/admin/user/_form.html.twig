@@ -1,54 +1,52 @@
-{{ form_start(form) }}
-    <div class="card">
-        <div class="card-header">
-            <h5 class="card-title mb-0">{{ 'users.form_sections.account'|trans }}</h5>
-        </div>
-        <div class="card-body">
-            {{ form_row(form.email) }}
-            <div class="row g-4">
-                <div class="col-md">{{ form_row(form.roles) }}</div>
-                <div class="col-md">{{ form_row(form.enabled) }}</div>
-                <div class="col-md">{{ form_row(form.verified) }}</div>
-            </div>
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title mb-0">{{ 'users.form_sections.account'|trans }}</h5>
+    </div>
+    <div class="card-body">
+        {{ form_row(form.email) }}
+        <div class="row g-4">
+            <div class="col-md">{{ form_row(form.roles) }}</div>
+            <div class="col-md">{{ form_row(form.enabled) }}</div>
+            <div class="col-md">{{ form_row(form.verified) }}</div>
         </div>
     </div>
+</div>
 
-    <div class="card">
-        <div class="card-header">
-            <h5 class="card-title mb-0">{{ 'users.form_sections.personal'|trans }}</h5>
-        </div>
-        <div class="card-body">
-            <div class="row g-4">
-                <div class="col-md">{{ form_row(form.userProfile.lastName) }}</div>
-                <div class="col-md">{{ form_row(form.userProfile.firstName) }}</div>
-            </div>
-            {{ form_row(form.userProfile.avatarFile) }}
-        </div>
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title mb-0">{{ 'users.form_sections.personal'|trans }}</h5>
     </div>
+    <div class="card-body">
+        <div class="row g-4">
+            <div class="col-md">{{ form_row(form.userProfile.lastName) }}</div>
+            <div class="col-md">{{ form_row(form.userProfile.firstName) }}</div>
+        </div>
+        {{ form_row(form.userProfile.avatarFile) }}
+    </div>
+</div>
 
-    <div class="card">
-        <div class="card-header">
-            <h5 class="card-title mb-0">{{ 'users.form_sections.company'|trans }}</h5>
-        </div>
-        <div class="card-body">
-            {{ form_row(form.userProfile.averageDailyRate) }}
-        </div>
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title mb-0">{{ 'users.form_sections.company'|trans }}</h5>
     </div>
+    <div class="card-body">
+        {{ form_row(form.userProfile.averageDailyRate) }}
+    </div>
+</div>
 
-    <div class="card">
-        <div class="card-header">
-            <h5 class="card-title mb-0">{{ 'users.form_sections.other'|trans }}</h5>
-        </div>
-        <div class="card-body">
-            <div class="row g-4">
-                <div class="col-md">{{ form_row(form.userProfile.locale) }}</div>
-                <div class="col-md">{{ form_row(form.userProfile.currency) }}</div>
-            </div>
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title mb-0">{{ 'users.form_sections.other'|trans }}</h5>
+    </div>
+    <div class="card-body">
+        <div class="row g-4">
+            <div class="col-md">{{ form_row(form.userProfile.locale) }}</div>
+            <div class="col-md">{{ form_row(form.userProfile.currency) }}</div>
         </div>
     </div>
+</div>
 
-    <div class="d-flex justify-content-between">
-        <a href="{{ path('app_admin_user') }}" class="btn btn-outline-secondary" title="{{ 'btn.back'|trans }}"><i class="fa-solid fa-arrow-left"></i></a>
-        <input type="submit" class="btn btn-primary" value="{{ 'btn.save'|trans }}">
-    </div>
-{{ form_end(form) }}
+<div class="float-end mt-n1">
+    {{ include('admin/user/_buttons/_back.html.twig') }}
+    {{ include('admin/user/_buttons/_submit.html.twig') }}
+</div>

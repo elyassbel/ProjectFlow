@@ -11,7 +11,11 @@
         <div class="col-md-4 col-xl-3">
             <div class="card md-3">
                 <div class="card-body text-center">
-                    <img src="{{ asset('/images/uploads/users/'~user.userProfile.avatarName)|imagine_filter('image120x120') }}" alt="{{ user.userProfile.avatarName }}" class="img-fluid rounded-circle mb-2" width="128" height="128">
+                    {% if user.userProfile.avatarFile %}
+                        <img src="{{ asset('/images/uploads/users/'~user.userProfile.avatarName)|imagine_filter('image120x120') }}" alt="{{ user.userProfile.avatarName }}" class="img-fluid rounded-circle mb-2">
+                    {% else %}
+                        <i class="fa fa-user"></i>
+                    {% endif %}
                     <h5 class="card-title mb-0">{{ user.userProfile.fullName }}</h5>
                     <div class="text-muted mb-2">Company Name</div>
                     <div>

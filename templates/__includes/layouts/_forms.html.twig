@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="container p-0"> {# container-fluid instead of container to make it fuild (100%) #}
+        {{ include('__includes/_impersonation.html.twig') }}
+        {{ include('__includes/_flashes.html.twig') }}
+        {{ form_start(form) }}
+        <div class="float-end mt-n1">{% block page_actions %}{% endblock %}</div>
+        <h1 class="h3 mb-3">{% block page_title %}Blank Page{% endblock %}</h1>
+        {% block page_content %}{% endblock %}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

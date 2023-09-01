@@ -94,7 +94,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/{id<\d+>}', name: 'app_admin_user_delete', methods: ['POST'])]
+    #[Route('/{id<\d+>}/delete', name: 'app_admin_user_delete')]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         if ($this->getUser()->getId() == $user->getId()) {
@@ -103,10 +103,12 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_admin_user_edit', ['id' => $user->getId()]);
         }
 
-        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+//        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $entityManager->remove($user);
             $entityManager->flush();
-        }
+//        }
+
+        $this->addFlash('success', 'flashes.delete');
 
         return $this->redirectToRoute('app_admin_user', [], Response::HTTP_SEE_OTHER);
     }

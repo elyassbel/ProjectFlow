@@ -53,6 +53,7 @@ flashes:
   error: Une erreur est survenue, merci de réessayer
   edit: Modifications enregistrées !
   password_reset: Votre mot de passe a été réinitialisé !
+  delete: Suppression réussie !
   user:
     cant_deactivate: Vous ne pouvez pas désactiver votre propre compte !
   email:

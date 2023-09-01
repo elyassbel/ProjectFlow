@@ -14,7 +14,10 @@
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
         <a class='sidebar-brand' href='{{ path('app_dashboard') }}'>
-            <span class="align-middle">{{ 'app.title'|trans }}</span>
+            <span class="align-middle">
+                <img src="{{ asset('build/images/logo.png')|imagine_filter('image240x240') }}" class="avatar img-fluid me-1" alt="{{ 'app.title'|trans }}" />
+                {{ 'app.title'|trans }}
+            </span>
         </a>
 
         <div class="sidebar-user">

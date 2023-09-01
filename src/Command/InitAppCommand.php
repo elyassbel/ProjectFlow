@@ -54,6 +54,7 @@ class InitAppCommand extends Command
         $this->entityManager->flush();
 
         $io->success(sprintf('✅ User %s has been created !', $user->getUserIdentifier()));
+        $io->text('Use the password forgotten feature to choose a password');
 
         return Command::SUCCESS;
     }

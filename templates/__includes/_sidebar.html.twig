@@ -20,7 +20,13 @@
         <div class="sidebar-user">
             <div class="d-flex justify-content-center">
                 <div class="flex-shrink-0">
-                    <img src="{{ asset('images/uploads/users/'~app.user.userProfile.avatarName) }}" class="avatar img-fluid rounded me-1" alt="{{ app.user.userProfile.avatarName }}" />
+                    {% if app.user.userProfile.avatarFile %}
+                        <img src="{{ asset('images/uploads/users/'~app.user.userProfile.avatarName) }}" class="avatar img-fluid rounded me-1" alt="{{ app.user.userProfile.avatarName }}" />
+                    {% else %}
+                        <div class="avatar img-fluid rounded me-1 text-center pt-1">
+                            <i class="fa fa-user fa-2xl"></i>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="flex-grow-1 ps-2">
                     <a class="sidebar-user-title dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">

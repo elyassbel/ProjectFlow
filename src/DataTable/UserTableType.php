@@ -15,6 +15,11 @@ class UserTableType extends TableDefault implements DataTableTypeInterface
     public function configure(DataTable $dataTable, array $options)
     {
         $dataTable
+            ->add('admin', TextColumn::class, [
+                'render' => function($value, $context) {
+                    return $context->hasRole('ROLE_ADMIN') ? '<span class="badge bg-danger" title="Admin">A</span>' : '';
+                }
+            ])
             ->add('firstName', TextColumn::class, [
                 'field' => 'userProfile.firstName'
             ])

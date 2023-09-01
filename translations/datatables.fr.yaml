@@ -8,3 +8,4 @@ dt:
     enabled: Compte activé
     createdAt: Date de création
     actions: Actions
+    admin: ''

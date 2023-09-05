@@ -13,3 +13,6 @@ dt:
     name: Nom
     address: Adresse
     mainContact: Contact principal
+    # ADDRESS
+    city: Ville
+    country: Pays

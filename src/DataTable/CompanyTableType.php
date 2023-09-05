@@ -9,6 +9,7 @@ use Omines\DataTablesBundle\Column\TextColumn;
 use Omines\DataTablesBundle\DataTable;
 use Omines\DataTablesBundle\DataTableTypeInterface;
 use Omines\DataTablesBundle\Adapter\Doctrine\ORMAdapter;
+use Symfony\Component\Intl\Countries;
 
 class CompanyTableType extends TableDefault implements DataTableTypeInterface
 {
@@ -23,13 +24,17 @@ class CompanyTableType extends TableDefault implements DataTableTypeInterface
                 'field' => 'company.name',
             ])
             ->add('city', TextColumn::class, [
-                'field' => 'company.address.city',
+                'field' => 'address.city',
             ])
             ->add('country', TextColumn::class, [
-                'field' => 'company.address.country',
+                'field' => 'address.country',
+                'render' => function($value, $context) {
+                    return Countries::getName($value);
+                },
             ])
             ->add('mainContact', TextColumn::class, [
                 'field' => 'company.mainContact',
+                'searchable' => false,
                 'orderable' => false,
             ])
             ->add('actions', TextColumn::class, [

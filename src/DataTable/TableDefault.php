@@ -6,7 +6,7 @@ use Twig\Environment;
 
 class TableDefault
 {
-    public function __construct(private readonly Environment $twig)
+    public function __construct(protected readonly Environment $twig)
     {
     }
 

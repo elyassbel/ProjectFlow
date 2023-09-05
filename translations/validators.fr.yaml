@@ -1,3 +1,8 @@
+common:
+  length:
+    min: La saisie doit faire au minimum {{ limit }} caractères
+    max: La saisie doit faire moins de {{ limit }} caractères
+
 change_password:
   plainPassword:
     invalid_message: Les mots de passes doivent être identiques

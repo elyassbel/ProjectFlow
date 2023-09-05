@@ -1,8 +1,8 @@
-{%- if path.edit is defined -%}
+{%- if path.edit is defined and path.edit -%}
     <a class="p-1 text-dark" title="{{ 'btn.edit'|trans }}" href="{{ path(path.edit, {id: row.id}) }}"><i class="fas fa-pen"></i></a>
 {%- endif -%}
 
-{%- if path.show is defined -%}
+{%- if path.show is defined and path.show -%}
     <a class="p-1 text-dark" title="{{ 'btn.show'|trans }}" href="{{ path(path.show, {id: row.id}) }}"><i class="far fa-eye"></i></a>
 {%- endif -%}
 

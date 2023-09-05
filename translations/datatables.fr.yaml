@@ -1,5 +1,6 @@
 dt:
   columns:
+    actions: Actions
     # USER
     firstName: Prénom
     lastName: Nom
@@ -7,5 +8,8 @@ dt:
     verified: Email verifié
     enabled: Compte activé
     createdAt: Date de création
-    actions: Actions
     admin: ''
+    # COMPANY
+    name: Nom
+    address: Adresse
+    mainContact: Contact principal

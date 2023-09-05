@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\UserProfile;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -36,13 +37,9 @@ class UserProfileType extends AbstractType
                     'user_profile.locale.choices.french' => 'FR',
                 ],
             ])
-            ->add('currency', ChoiceType::class, [  //todo: add Currency Entity
+            ->add('currency', CurrencyType::class, [
                 'label' => 'user_profile.currency.label',
-                'choices' => [
-                    'user_profile.currency.choices.euro' => '€',
-                    'user_profile.currency.choices.dollar' => '$',
-                    'user_profile.currency.choices.pound' => '£',
-                ],
+                'preferred_choices' => ['EUR', 'USD', 'JPY'],
             ])
             ->add('avatarFile', VichImageType::class, [
                 'label' => 'user_profile.avatarFile.label',

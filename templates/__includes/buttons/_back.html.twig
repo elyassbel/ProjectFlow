@@ -1,0 +1,4 @@
+{% if back_url is not defined %}
+    {% set back_url = '#' %}
+{% endif %}
+<a href="{{ back_url }}" class="btn btn-outline-secondary" title="{{ 'btn.back'|trans }}"><i class="fa-solid fa-arrow-left"></i></a>

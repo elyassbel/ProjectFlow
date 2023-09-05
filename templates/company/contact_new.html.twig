@@ -1,0 +1,18 @@
+{% extends '__includes/layouts/_forms.html.twig' %}
+
+{% block page_title %}{{ 'company.contact.new.title'|trans }} {{ company.name }}{% endblock %}
+
+{% block page_actions %}
+    {{ include('__includes/buttons/_submit.html.twig') }}
+{% endblock %}
+
+{% block page_content %}
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">{{ 'company.contact.form_sections.information'|trans }}</h5>
+        </div>
+        <div class="card-body">
+            {{ form_rest(form) }}
+        </div>
+    </div>
+{% endblock %}

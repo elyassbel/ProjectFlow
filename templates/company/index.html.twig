@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}{{ 'company.title'|trans }}{% endblock %}
+
+{% block page_actions %}<a class="btn btn-primary" href="{{ path('app_company_new') }}" role="button"><i class="fa-solid fa-plus"></i> {{ 'company.btn.add'|trans }}</a>{% endblock %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div id="data-table-instance">{{ 'loading'|trans }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ include('__includes/datatables/_datatable_js.html.twig') }}
+{% endblock %}

@@ -3,6 +3,19 @@ app:
     yes: Oui
     no: Non
 
+# -----
+address:
+  street1:
+    label: Rue
+  street2:
+    label: Complément d'adresse
+  postalCode:
+    label: Code postal
+  city:
+    label: Ville
+  country:
+    label: Pays
+
 change_password:
   plainPassword:
     first_options:
@@ -11,6 +24,37 @@ change_password:
     second_options:
       label: Répéter le mot de passe
       placeholder: Saisir le même mot de passe
+
+company:
+  name:
+    label: Nom
+    placeholder: Nom du client ou de l'entreprise
+  address:
+    label: Adresse
+  website:
+    label: Site internet
+    placeholder: 'https://...'
+  comments:
+    label: Notes
+    placeholder: Ajouter des notes privés...
+
+company_contact:
+  lastName:
+    label: Nom
+  firstName:
+    label: Prénom
+  email:
+    label: Adresse email
+  phone1:
+    label: Numéro de téléphone
+    placeholder: '+33612345678'
+  phone2:
+    label: Numéro de téléphone secondaire
+  main:
+    label: Contact principal
+  comments:
+    label: Notes
+    placeholder: Ajouter des notes privés...
 
 reset_password_request:
   email:

@@ -1,0 +1,12 @@
+{% extends '__includes/layouts/_forms.html.twig' %}
+
+{% block page_title %}{{ 'company.new.title'|trans }}{% endblock %}
+
+{% block page_actions %}
+    {{ include('__includes/buttons/_back.html.twig', {'back_url': path('app_company')}) }}
+    {{ include('__includes/buttons/_submit.html.twig') }}
+{% endblock %}
+
+{% block page_content %}
+    {{ include('company/_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title mb-0">{{ 'company.form_sections.information'|trans }}</h5>
+    </div>
+    <div class="card-body">
+        {{ form_row(form.name) }}
+        {{ form_row(form.website) }}
+        {{ form_row(form.comments) }}
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title mb-0">{{ 'company.form_sections.address'|trans }}</h5>
+    </div>
+    <div class="card-body">
+        {{ form_widget(form.address) }}
+    </div>
+</div>
+
+{{ form_rest(form) }}

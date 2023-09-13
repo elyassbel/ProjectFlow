@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AddressRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Intl\Countries;
 
 #[ORM\Entity(repositoryClass: AddressRepository::class)]
 class Address
@@ -48,6 +49,11 @@ class Address
     public function getCountry(): ?string
     {
         return $this->country;
+    }
+
+    public function getCountryFull(): ?string
+    {
+        return Countries::getName($this->country);
     }
 
     public function setCountry(string $country): static
@@ -95,6 +101,31 @@ class Address
 
     public function __toString(): string
     {
-        return $this->street1.' '.$this->postalCode.', '.$this->city.' '.strtoupper($this->country);
+        return $this->getFullAddress();
+    }
+
+    public function getFullAddress(): string
+    {
+        return $this->getLightAddress().', '.$this->getCountryFull();
+    }
+
+    public function getLightAddress(): string
+    {
+        $str = $this->getStreetAddress();
+        if ($this->postalCode) {
+            $str.= ', '.$this->postalCode;
+        }
+
+        return $str.', '.$this->city;
+    }
+
+    public function getStreetAddress(): string
+    {
+        $str = $this->street1;
+        if ($this->street2) {
+            $str.= ', '.$this->street2;
+        }
+
+        return $str;
     }
 }

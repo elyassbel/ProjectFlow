@@ -76,11 +76,19 @@ company:
     add: Ajouter un client
   new:
     title: Ajouter un client
+  edit:
+    title: Modifier la fiche client
   contact:
     new:
       title: Nouveau contact pour
     form_sections:
       information: Informations du contact
+  show:
+    title: Fiche client
+    contacts:
+      title: Liste des contacts
+    invoices:
+      title: Facturation
 
 dashboard:
   title: Tableau de bord

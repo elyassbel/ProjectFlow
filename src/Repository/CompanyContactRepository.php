@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Company;
 use App\Entity\CompanyContact;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,6 +20,18 @@ class CompanyContactRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, CompanyContact::class);
+    }
+
+    public function findMainContact(Company $company): ?CompanyContact
+    {
+        return $this->createQueryBuilder('cc')
+            ->leftJoin('cc.company', 'c')
+            ->andWhere('cc.main = true')
+            ->andWhere('c.id = :companyId')
+            ->setParameter('companyId', $company->getId())
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
 //    /**

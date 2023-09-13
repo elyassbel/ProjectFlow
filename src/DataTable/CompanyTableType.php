@@ -39,7 +39,7 @@ class CompanyTableType extends TableDefault implements DataTableTypeInterface
             ])
             ->add('actions', TextColumn::class, [
                 'render' => function($value, $context) {
-                    return $this->getActionsButtons($context);
+                    return $this->getActionsButtons($context, 'app_company_edit');
                 },
             ])
             ->createAdapter(ORMAdapter::class, [

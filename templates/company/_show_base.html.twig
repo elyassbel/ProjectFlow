@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}{{ company.name }} / {% block page_subtitle %}{{ 'company.show.title'|trans }}{% endblock %}{% endblock %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="https://loremflickr.com/640/180" alt="Lorem">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">{{ company.name }}</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-sm">
+                        <tbody>
+                            <tr>
+                                <td><i class="m-1" data-feather="map-pin"></i> {{ company.address.lightAddress }}</td>
+                            </tr>
+                            <tr>
+                                <td><i class="m-1" data-feather="globe"></i> {{ company.address.countryFull }}</td>
+                            </tr>
+                            {% if company.website %}
+                                <tr>
+                                    <td><i class="m-1" data-feather="link"></i> <a href="{{ company.website }}" target="_blank">{{ company.website }}</a></td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">{{ 'company.show.main_contact'|trans }}</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <strong>{{ mainContact }}</strong>
+                        TODO: AUTRES INFO
+                    </p>
+                    <a href="{{ path('app_company_show_contacts', {'id': company.id}) }}" class="card-link">{{ 'company.show.see_all_contacts'|trans }}</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-8">
+            <ul class="nav nav-pills mb-4" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" href="{{ path('app_company_show_contacts', {'id': company.id}) }}" aria-selected="true" role="tab">la fiche pas traduit</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ path('app_company_show_contacts', {'id': company.id}) }}" role="tab">les contact pas traduit</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ path('app_company_show_invoices', {'id': company.id}) }}" role="tab">les contact pas traduit</a>
+                </li>
+            </ul>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="tab-content">
+                        {% block page_show_content %} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab commodi culpa dolorem eligendi exercitationem nostrum rem reprehenderit sequi soluta, veniam? {% endblock %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

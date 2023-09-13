@@ -25,6 +25,11 @@ class CompanyController extends AbstractController
         $user = $this->getUser();
 
         $table = $dataTableFactory->createFromType(CompanyTableType::class, ['user' => $user])->handleRequest($request);
+        //TODO: show
+        //TODO: delete
+        //TODO: datatable : search by country name instead of country Code :
+        //TODO: ----------> Solution 1 : Override SearchCriteriaProvider but there is no doc on how to do so (back)
+        //TODO: ----------> Solution 2 : Add a custom search selector with list of available countries (front)
         if ($table->isCallback()) {
             return $table->getResponse();
         }
@@ -57,8 +62,50 @@ class CompanyController extends AbstractController
         ]);
     }
 
-    #[Route('/{id<\d+>}/new-contact', name: 'app_company_contact_new', methods: ['GET', 'POST'])]
-    public function contactNew(Company $company, Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/{id<\d+>}/edit', name: 'app_company_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Company $company, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(CompanyType::class, $company);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'flashes.edit');
+
+            return $this->redirectToRoute('app_company_show', ['id' => $company->getId()]);
+        }
+
+        return $this->render('company/edit.html.twig', [
+            'company' => $company,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/{id<\d+>}/show', name: 'app_company_show', methods: ['GET', 'POST'])]
+    public function show(Request $request, Company $company, EntityManagerInterface $entityManager): Response
+    {
+        $mainContact = $entityManager->getRepository(CompanyContact::class)->findMainContact($company);
+
+        return $this->render('company/show.html.twig', [
+            'company' => $company,
+            'mainContact' => $mainContact,
+        ]);
+    }
+
+    #[Route('/{id<\d+>}/show-contacts', name: 'app_company_show_contacts')]
+    public function showContacts(Request $request, Company $company): Response
+    {
+        return $this->render('company/show_contacts.html.twig', ['company' => $company]);
+    }
+
+    #[Route('/{id<\d+>}/show-invoices', name: 'app_company_show_invoices')]
+    public function showInvoices(Request $request, Company $company): Response
+    {
+        return $this->render('company/show_invoices.html.twig', ['company' => $company]);
+    }
+
+    #[Route('/{id<\d+>}/new-contact', name: 'app_company_contact_new')]
+    public function newContact(Company $company, Request $request, EntityManagerInterface $entityManager): Response
     {
         $contact = new CompanyContact();
         $contact->setCompany($company);

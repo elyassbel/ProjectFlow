@@ -97,6 +97,7 @@ class CompanyController extends AbstractController
     {
         $mainContact = $entityManager->getRepository(CompanyContact::class)->findMainContact($company);
         $contacts = $company->getContacts();
+        //TODO: afficher sous forme de datatables : Nom prenom email phone isMain
 
         return $this->render('company/show_contacts.html.twig', [
             'company' => $company,
@@ -109,6 +110,7 @@ class CompanyController extends AbstractController
     public function showInvoices(Request $request, Company $company, EntityManagerInterface $entityManager): Response
     {
         $mainContact = $entityManager->getRepository(CompanyContact::class)->findMainContact($company);
+        //TODO: Faire le module invoice 
         
         return $this->render('company/show_invoices.html.twig', [
             'company' => $company,

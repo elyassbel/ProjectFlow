@@ -36,7 +36,10 @@
                 <div class="card-body">
                     <p class="card-text">
                         <strong>{{ mainContact }}</strong>
-                        TODO: AUTRES INFO
+                        <br>
+                        {{ mainContact.email }}
+                        <br>
+                        {{ mainContact.phone1 }}
                     </p>
                     <a href="{{ path('app_company_show_contacts', {'id': company.id}) }}" class="card-link">{{ 'company.show.see_all_contacts'|trans }}</a>
                 </div>
@@ -45,20 +48,20 @@
         <div class="col-12 col-md-8">
             <ul class="nav nav-pills mb-4" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link {{ app.current_route == 'app_company_show' ? 'active' }}" href="{{ path('app_company_show', {'id': company.id}) }}" aria-selected="true" role="tab">la fiche pas traduit</a>
+                    <a class="nav-link {{ app.current_route == 'app_company_show' ? 'active' }}" href="{{ path('app_company_show', {'id': company.id}) }}" aria-selected="true" role="tab">{{ 'company.show.nav.company'|trans }}</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link {{ app.current_route == 'app_company_show_contacts' ? 'active' }}" href="{{ path('app_company_show_contacts', {'id': company.id}) }}" role="tab">les contact pas traduit</a>
+                    <a class="nav-link {{ app.current_route == 'app_company_show_contacts' ? 'active' }}" href="{{ path('app_company_show_contacts', {'id': company.id}) }}" role="tab">{{ 'company.show.nav.contacts'|trans }}</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link {{ app.current_route == 'app_company_show_invoices' ? 'active' }}" href="{{ path('app_company_show_invoices', {'id': company.id}) }}" role="tab">les contact pas traduit</a>
+                    <a class="nav-link {{ app.current_route == 'app_company_show_invoices' ? 'active' }}" href="{{ path('app_company_show_invoices', {'id': company.id}) }}" role="tab">{{ 'company.show.nav.invoices'|trans }}</a>
                 </li>
             </ul>
 
             <div class="card">
                 <div class="card-body">
                     <div class="tab-content">
-                        {% block page_show_content %} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab commodi culpa dolorem eligendi exercitationem nostrum rem reprehenderit sequi soluta, veniam? {% endblock %}
+                        {% block page_show_content %}{% endblock %}
                     </div>
                 </div>
             </div>

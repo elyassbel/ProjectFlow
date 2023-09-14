@@ -85,10 +85,16 @@ company:
       information: Informations du contact
   show:
     title: Fiche client
+    main_contact: Contact principal
+    see_all_contacts: Voir tous les contacts
     contacts:
       title: Liste des contacts
     invoices:
       title: Facturation
+    nav:
+      company: Fiche
+      contacts: Contacts
+      invoices: Facturation
 
 dashboard:
   title: Tableau de bord

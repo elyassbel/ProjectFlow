@@ -4,5 +4,10 @@
 
 {% block page_show_content %}
     SHOW CONTACTS
+    <ul>
+    {% for contact in contacts %}
+        <li>{{ contact }}</li>
+    {% endfor %}
+    </ul>
+    
 {% endblock %}
-

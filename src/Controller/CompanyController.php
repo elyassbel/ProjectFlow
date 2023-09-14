@@ -93,15 +93,27 @@ class CompanyController extends AbstractController
     }
 
     #[Route('/{id<\d+>}/show-contacts', name: 'app_company_show_contacts')]
-    public function showContacts(Request $request, Company $company): Response
+    public function showContacts(Request $request, Company $company, EntityManagerInterface $entityManager): Response
     {
-        return $this->render('company/show_contacts.html.twig', ['company' => $company]);
+        $mainContact = $entityManager->getRepository(CompanyContact::class)->findMainContact($company);
+        $contacts = $company->getContacts();
+
+        return $this->render('company/show_contacts.html.twig', [
+            'company' => $company,
+            'contacts' => $contacts,
+            'mainContact' => $mainContact,
+        ]);
     }
 
     #[Route('/{id<\d+>}/show-invoices', name: 'app_company_show_invoices')]
-    public function showInvoices(Request $request, Company $company): Response
+    public function showInvoices(Request $request, Company $company, EntityManagerInterface $entityManager): Response
     {
-        return $this->render('company/show_invoices.html.twig', ['company' => $company]);
+        $mainContact = $entityManager->getRepository(CompanyContact::class)->findMainContact($company);
+        
+        return $this->render('company/show_invoices.html.twig', [
+            'company' => $company,
+            'mainContact' => $mainContact,
+        ]);
     }
 
     #[Route('/{id<\d+>}/new-contact', name: 'app_company_contact_new')]
